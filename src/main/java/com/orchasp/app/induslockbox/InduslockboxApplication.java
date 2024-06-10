@@ -8,6 +8,7 @@ public class InduslockboxApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(InduslockboxApplication.class, args);
+		System.out.println();
 	}
 
 }
