@@ -12,27 +12,29 @@ public class GST {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	 @NotBlank
-	 @Column(length = 50)
-	  private String GStname;
-	    @NotBlank
-	    @Column(length = 20)
-	    private String gstNumber;
-	    @NotBlank
-	    @Column(length = 30)
-	    private String userid;
-	    @NotBlank
-	    @Column(length = 255)
-	    private String password;
-	    
+	@NotBlank
+	@Column(length = 50)
+	private String GStname;
+	@NotBlank
+	@Column(length = 20)
+	private String gstNumber;
+	@NotBlank
+	@Column(length = 30)
+	private String userid;
+
+	@NotBlank
+	@Column(length = 20)
+
+	private String password;
+
 	public Long getId() {
 		return id;
 	}
-	
+
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
+
 	public String getGstNumber() {
 		return gstNumber;
 	}
@@ -41,17 +43,14 @@ public class GST {
 		this.gstNumber = gstNumber;
 	}
 
-	
 	public String getGStname() {
 		return GStname;
 	}
 
-	
 	public void setGStname(String gStname) {
 		GStname = gStname;
 	}
 
-	
 	public String getUserid() {
 		return userid;
 	}
@@ -60,16 +59,12 @@ public class GST {
 		this.userid = userid;
 	}
 
-	
 	public String getPassword() {
 		return password;
 	}
 
-	
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-
 
 }
