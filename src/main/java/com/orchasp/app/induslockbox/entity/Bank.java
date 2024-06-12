@@ -3,7 +3,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 @Entity
@@ -11,29 +11,38 @@ public class Bank {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@NotBlank
 	@Size(max=50)
 	private String accountHolderName;
-	@Size(max=12)
+	@NotBlank
+	@Size(max=15)
 	private String bankAccountNumber;
-
+	@NotBlank 
+	@Size(max=20)
 	private String IFCcode;
-
+	@NotBlank
+	@Size(max=30)
 	private String bankName;
-
+	@NotBlank
+     @Size(max=50)
 	private String branch;
 
+	@NotBlank
 	private Long IRCcode;
 
+	@NotBlank
 	private Long MRCcode;
 
-	
+	@NotBlank
 	private Long RBIcode;
 
-
+	@NotBlank
 	private Long transactionCode;
-
+	@NotBlank
+      @Size(max=20)
 	private String accountType;
-
+	@NotBlank
+      @Size(max=20)
 	private String password;
 
 	public Long getId() {
