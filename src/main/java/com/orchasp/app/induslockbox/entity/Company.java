@@ -39,24 +39,22 @@ public class Company {
 	@NotBlank
 	private Long pincode;
 
-	//one-to-one mapping with GST entity class
+	// one-to-one mapping with GST entity class
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "gst_id", referencedColumnName = "id")
 	private GST gst;
 
-	//one-to-one mapping with Bank entity class
+	// one-to-one mapping with Bank entity class
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "bank_id", referencedColumnName = "id")
 	private Bank bank;
 
-	//one-to-one mapping with IncomeTax entity class
+	// one-to-one mapping with IncomeTax entity class
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "incomeTax_id", referencedColumnName = "id")
 	private IncomeTax incomeTax;
 
-	
-
-	//one-to-one mapping with EPF entity class
+	// one-to-one mapping with EPF entity class
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "epf_id", referencedColumnName = "id")
 	private EPF epf;
@@ -68,7 +66,6 @@ public class Company {
 	public void setCompanyid(Long companyid) {
 		this.companyid = companyid;
 	}
-
 
 	public String getOrganizationCode() {
 		return organizationCode;
@@ -82,27 +79,22 @@ public class Company {
 		return companyname;
 	}
 
-	
 	public void setCompanyname(String companyname) {
 		this.companyname = companyname;
 	}
 
-	
 	public String getDirector() {
 		return director;
 	}
 
-	
 	public void setDirector(String director) {
 		this.director = director;
 	}
 
-	
 	public String getIncorporationDate() {
 		return incorporationDate;
 	}
 
-	
 	public void setIncorporationDate(String incorporationDate) {
 		this.incorporationDate = incorporationDate;
 	}
@@ -115,17 +107,14 @@ public class Company {
 		this.registerNo = registerNo;
 	}
 
-	
 	public Long getPhoneNo() {
 		return phoneNo;
 	}
 
-	
 	public void setPhoneNo(Long phoneNo) {
 		this.phoneNo = phoneNo;
 	}
 
-	
 	public String getEmail() {
 		return email;
 	}
@@ -134,35 +123,31 @@ public class Company {
 		this.email = email;
 	}
 
-	
 	public String getWebsite() {
 		return website;
 	}
+
 	public void setWebsite(String website) {
 		this.website = website;
 	}
 
-	
 	public String getDoorNo() {
 		return doorNo;
 	}
 
-	
 	public void setDoorNo(String doorNo) {
 		this.doorNo = doorNo;
 	}
 
-	
 	public String getCity() {
 		return city;
 	}
 
-	
 	public void setCity(String city) {
 		this.city = city;
 	}
 
-		public String getState() {
+	public String getState() {
 		return state;
 	}
 
