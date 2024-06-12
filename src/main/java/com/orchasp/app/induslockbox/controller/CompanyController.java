@@ -75,9 +75,7 @@ public class CompanyController {
         return ResponseEntity.noContent().build();
     }
     
-    //////////////////////
-    
-
+   //getting bank records
     @GetMapping("/banks/{companyid}")
     public ResponseEntity<Optional<Bank>> getBanksByOrganisationId(@PathVariable Long companyid) {
         Optional<Bank> banks = organisationService.getBanksByCompanyId(companyid);
@@ -88,6 +86,7 @@ public class CompanyController {
         }
     }
 
+  //getting gst records
     @GetMapping("/gst/{companyid}")
     public ResponseEntity<Optional<GST>> getGSTByOrganisationName(@PathVariable Long companyid) {
         Optional<GST> gst = organisationService.getGSTByCompanyId(companyid);
@@ -97,7 +96,8 @@ public class CompanyController {
             return ResponseEntity.notFound().build();
         }
     }
-
+    
+  //getting incometax records
     @GetMapping("/incometax/{companyid}")
     public ResponseEntity<Optional<IncomeTax>> getIncomeTaxByOrganisationName(@PathVariable Long companyid) {
         Optional<IncomeTax> incomeTax = organisationService.getIncomeTaxByCompanyId(companyid);
@@ -108,6 +108,7 @@ public class CompanyController {
         }
     }
 
+  //getting epf records
     @GetMapping("/epf/{companyid}")
     public ResponseEntity<Optional<EPF>> getEPFByOrganisationName(@PathVariable Long companyid) {
         Optional<EPF> epf = organisationService.getEPFByCompanyId(companyid);

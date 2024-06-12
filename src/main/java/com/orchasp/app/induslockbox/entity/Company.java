@@ -16,18 +16,22 @@ public class Company {
 
 	private String companyname;
 
+	//one-to-one mapping with GST entity class
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "gst_id", referencedColumnName = "id")
 	private GST gst;
 
+	//one-to-one mapping with Bank entity class
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "bank_id", referencedColumnName = "id")
 	private Bank bank;
 
+	//one-to-one mapping with IncomeTax entity class
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "incomeTax_id", referencedColumnName = "id")
 	private IncomeTax incomeTax;
 
+	//one-to-one mapping with EPF entity class
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "epf_id", referencedColumnName = "id")
 	private EPF epf;
