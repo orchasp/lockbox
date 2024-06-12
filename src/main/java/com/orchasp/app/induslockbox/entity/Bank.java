@@ -4,15 +4,16 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+import jakarta.validation.constraints.Size;
+
 @Entity
 public class Bank {
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
-	private String accountHolderName;
-
+	@Size(max=50)
+	private String accountHolderName==============;
+	@Size(max=12)
 	private String bankAccountNumber;
 
 	private String IFCcode;
@@ -24,6 +25,10 @@ public class Bank {
 	private Long IRCcode;
 
 	private Long MRCcode;
+
+	
+	private Long RBIcode;
+
 
 	private Long transactionCode;
 
@@ -118,10 +123,21 @@ public class Bank {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+
+
+	public Long getRBIcode() {
+		return RBIcode;
+	}
+
+	public void setRBIcode(Long rBIcode) {
+		RBIcode = rBIcode;
+	}
+
 	
 
 }
+
+
 
 
 
