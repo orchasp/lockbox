@@ -15,12 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.orchasp.app.induslockbox.entity.Bank;
+import com.orchasp.app.induslockbox.entity.Company;
 import com.orchasp.app.induslockbox.entity.EPF;
 import com.orchasp.app.induslockbox.entity.GST;
 import com.orchasp.app.induslockbox.entity.IncomeTax;
-import com.orchasp.app.induslockbox.entity.Company;
 import com.orchasp.app.induslockbox.service.CompanyService;
-
 
 
 @RestController
@@ -34,7 +33,7 @@ public class CompanyController {
         return organisationService.getAllCompanies();
     }
 
-    @GetMapping("/company/{id}")
+    @GetMapping("/fetchbyid/{id}")
     public ResponseEntity<Company> getOrganisationById(@PathVariable Long id) {
         Optional<Company> organisation = organisationService.getCompanyById(id);
         if (organisation.isPresent()) {
@@ -55,13 +54,13 @@ public class CompanyController {
     }
 
     @PostMapping("/save")
-    public Company createCompany(@RequestBody Company organisation) {
+    public Company createOrganisation(@RequestBody Company organisation) {
         return organisationService.createCompany(organisation);
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Company> updateCompany(@PathVariable Long id, @RequestBody Company organisationDetails) {
-        Company updatedOrganisation = organisationService.updateOrganisation(id, organisationDetails);
+    public ResponseEntity<Company> updateOrganisation(@PathVariable Long id, @RequestBody Company organisationDetails) {
+    	Company updatedOrganisation = organisationService.updateCompany(id, organisationDetails);
         if (updatedOrganisation != null) {
             return ResponseEntity.ok(updatedOrganisation);
         } else {
@@ -75,7 +74,9 @@ public class CompanyController {
         return ResponseEntity.noContent().build();
     }
     
-   //getting bank records
+    //////////////////////
+    
+
     @GetMapping("/banks/{companyid}")
     public ResponseEntity<Optional<Bank>> getBanksByOrganisationId(@PathVariable Long companyid) {
         Optional<Bank> banks = organisationService.getBanksByCompanyId(companyid);
@@ -86,7 +87,6 @@ public class CompanyController {
         }
     }
 
-  //getting gst records
     @GetMapping("/gst/{companyid}")
     public ResponseEntity<Optional<GST>> getGSTByOrganisationName(@PathVariable Long companyid) {
         Optional<GST> gst = organisationService.getGSTByCompanyId(companyid);
@@ -96,8 +96,7 @@ public class CompanyController {
             return ResponseEntity.notFound().build();
         }
     }
-    
-  //getting incometax records
+
     @GetMapping("/incometax/{companyid}")
     public ResponseEntity<Optional<IncomeTax>> getIncomeTaxByOrganisationName(@PathVariable Long companyid) {
         Optional<IncomeTax> incomeTax = organisationService.getIncomeTaxByCompanyId(companyid);
@@ -108,7 +107,6 @@ public class CompanyController {
         }
     }
 
-  //getting epf records
     @GetMapping("/epf/{companyid}")
     public ResponseEntity<Optional<EPF>> getEPFByOrganisationName(@PathVariable Long companyid) {
         Optional<EPF> epf = organisationService.getEPFByCompanyId(companyid);
@@ -119,5 +117,3 @@ public class CompanyController {
         }
     }
 }
-
-

@@ -15,7 +15,6 @@ import com.orchasp.app.induslockbox.response.MessageResponse;
 public class AdminService {
 	@Autowired
 	private AdminRepository adminRepository;
-	
 	@Autowired
 	private PasswordEncoder encoder;
 

@@ -50,7 +50,7 @@ public class CompanyService {
 		return organisationRepository.save(organisation);
 	}
 
-	public Company updateOrganisation(Long id, Company companyDetails) {
+	public Company updateCompany(Long id, Company companyDetails) {
 		Optional<Company> optionalOrganisation = organisationRepository.findById(id);
 		Company existingCompany = optionalOrganisation.get();
 		if (optionalOrganisation.isPresent()) {
