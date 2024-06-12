@@ -7,14 +7,37 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 public class Company {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long companyid;
-
+	@NotBlank
+	private String organizationCode;
+	@NotBlank
 	private String companyname;
+	@NotBlank
+	private String director;
+	@NotBlank
+	private String incorporationDate;
+	@NotBlank
+	private String registerNo;
+	@NotBlank
+	private Long phoneNo;
+	@NotBlank
+	private String email;
+	@NotBlank
+	private String website;
+	@NotBlank
+	private String doorNo;
+	@NotBlank
+	private String city;
+	@NotBlank
+	private String state;
+	@NotBlank
+	private Long pincode;
 
 	//one-to-one mapping with GST entity class
 	@OneToOne(cascade = CascadeType.ALL)
@@ -58,12 +81,113 @@ public class Company {
 		this.companyid = companyid;
 	}
 
+
+	public String getOrganizationCode() {
+		return organizationCode;
+	}
+
+	public void setOrganizationCode(String organizationCode) {
+		this.organizationCode = organizationCode;
+	}
+
 	public String getCompanyname() {
 		return companyname;
 	}
 
+	
 	public void setCompanyname(String companyname) {
 		this.companyname = companyname;
+	}
+
+	
+	public String getDirector() {
+		return director;
+	}
+
+	
+	public void setDirector(String director) {
+		this.director = director;
+	}
+
+	
+	public String getIncorporationDate() {
+		return incorporationDate;
+	}
+
+	
+	public void setIncorporationDate(String incorporationDate) {
+		this.incorporationDate = incorporationDate;
+	}
+
+	public String getRegisterNo() {
+		return registerNo;
+	}
+
+	public void setRegisterNo(String registerNo) {
+		this.registerNo = registerNo;
+	}
+
+	
+	public Long getPhoneNo() {
+		return phoneNo;
+	}
+
+	
+	public void setPhoneNo(Long phoneNo) {
+		this.phoneNo = phoneNo;
+	}
+
+	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	
+	public String getWebsite() {
+		return website;
+	}
+	public void setWebsite(String website) {
+		this.website = website;
+	}
+
+	
+	public String getDoorNo() {
+		return doorNo;
+	}
+
+	
+	public void setDoorNo(String doorNo) {
+		this.doorNo = doorNo;
+	}
+
+	
+	public String getCity() {
+		return city;
+	}
+
+	
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+		public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public Long getPincode() {
+		return pincode;
+	}
+
+	public void setPincode(Long pincode) {
+		this.pincode = pincode;
 	}
 
 	public GST getGst() {

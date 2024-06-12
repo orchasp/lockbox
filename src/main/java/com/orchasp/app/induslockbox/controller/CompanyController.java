@@ -30,6 +30,7 @@ public class CompanyController {
     private CompanyService companyService;
 
     @GetMapping("/fetchall")
+
     public List<Company> getAllCompanies() {
         return companyService.getAllCompanies();
     }
@@ -39,22 +40,41 @@ public class CompanyController {
         Optional<Company> obj = companyService.getCompanyById(id);
         if (obj.isPresent()) {
             return ResponseEntity.ok(obj.get());
+
+    public List<Company> getAllOrganisations() {
+        return organisationService.getAllCompanies();
+    }
+
+    @GetMapping("/company/{id}")
+    public ResponseEntity<Company> getOrganisationById(@PathVariable Long id) {
+        Optional<Company> organisation = organisationService.getCompanyById(id);
+        if (organisation.isPresent()) {
+            return ResponseEntity.ok(organisation.get());
+
         } else {
             return ResponseEntity.notFound().build();
         }
     }
 
     @GetMapping("/name/{companyname}")
+
     public ResponseEntity<Company> getCompanyByName(@PathVariable String companyname) {
         Optional<Company> obj = companyService.getCompanyByName(companyname);
         if (obj.isPresent()) {
             return ResponseEntity.ok(obj.get());
+
+    public ResponseEntity<Company> getOrganisationByName(@PathVariable String companyname) {
+        Optional<Company> organisation = organisationService.getCompanyByName(companyname);
+        if (organisation.isPresent()) {
+            return ResponseEntity.ok(organisation.get());
+
         } else {
             return ResponseEntity.notFound().build();
         }
     }
 
     @PostMapping("/save")
+
     public Company createCompany(@RequestBody Company company) {
         return companyService.createCompany(company);
     }
@@ -64,14 +84,30 @@ public class CompanyController {
         Company updatedCompany = companyService.updateCompany(id, companyDetails);
         if (updatedCompany != null) {
             return ResponseEntity.ok(updatedCompany);
+
+    public Company createCompany(@RequestBody Company organisation) {
+        return organisationService.createCompany(organisation);
+    }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Company> updateCompany(@PathVariable Long id, @RequestBody Company organisationDetails) {
+        Company updatedOrganisation = organisationService.updateOrganisation(id, organisationDetails);
+        if (updatedOrganisation != null) {
+            return ResponseEntity.ok(updatedOrganisation);
+
         } else {
             return ResponseEntity.notFound().build();
         }
     }
 
     @DeleteMapping("/delete/{id}")
+
     public ResponseEntity<Void> deleteCompany(@PathVariable Long id) {
     	companyService.deleteCompany(id);
+
+    public ResponseEntity<Void> deleteOrganisation(@PathVariable Long id) {
+        organisationService.deleteCompany(id);
+
         return ResponseEntity.noContent().build();
     }
     
