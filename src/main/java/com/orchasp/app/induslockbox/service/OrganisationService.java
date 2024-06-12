@@ -20,7 +20,7 @@ import com.orchasp.app.induslockbox.repository.OrganisationRepository;
 @Service
 public class OrganisationService {
 	@Autowired
-	private OrganisationRepository organisationRepository=====;
+	private OrganisationRepository organisationRepository;
 	@Autowired
 	private BankRepository bankRepository;
 
