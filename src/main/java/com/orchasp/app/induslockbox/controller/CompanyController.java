@@ -34,7 +34,7 @@ public class CompanyController {
         return organisationService.getAllOrganisations();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/company/{id}")
     public ResponseEntity<Company> getOrganisationById(@PathVariable Long id) {
         Optional<Company> organisation = organisationService.getOrganisationById(id);
         if (organisation.isPresent()) {
@@ -59,7 +59,7 @@ public class CompanyController {
         return organisationService.createOrganisation(organisation);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<Company> updateOrganisation(@PathVariable Long id, @RequestBody Company organisationDetails) {
         Company updatedOrganisation = organisationService.updateOrganisation(id, organisationDetails);
         if (updatedOrganisation != null) {
@@ -69,7 +69,7 @@ public class CompanyController {
         }
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deleteOrganisation(@PathVariable Long id) {
         organisationService.deleteOrganisation(id);
         return ResponseEntity.noContent().build();
