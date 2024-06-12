@@ -12,6 +12,20 @@ public class IncomeTax {
 	private Long id;
 
 	private String panNumber;
+	
+	private String name;
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	private String issuedDate;
+	
+	private String dateOfBirth;
 
 	public Long getId() {
 		return id;
@@ -28,5 +42,23 @@ public class IncomeTax {
 	public void setPanNumber(String panNumber) {
 		this.panNumber = panNumber;
 	}
+
+	public String getIssuedDate() {
+		return issuedDate;
+	}
+
+	public void setIssuedDate(String issuedDate) {
+		this.issuedDate = issuedDate;
+	}
+
+	public String getDateOfBirth() {
+		return dateOfBirth;
+	}
+
+	public void setDateOfBirth(String dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
+	}
+	
+	
 
 }

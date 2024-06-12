@@ -10,7 +10,7 @@ public class EPF {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
+	
 	private String epfNumber;
 
 	public Long getId() {
