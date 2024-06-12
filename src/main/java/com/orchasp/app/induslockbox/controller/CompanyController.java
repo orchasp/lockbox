@@ -24,12 +24,12 @@ import com.orchasp.app.induslockbox.service.CompanyService;
 
 
 @RestController
-@RequestMapping("/organisations")
+@RequestMapping("/company")
 public class CompanyController {
     @Autowired
     private CompanyService organisationService;
 
-    @GetMapping
+    @GetMapping("/fetchall")
     public List<Company> getAllOrganisations() {
         return organisationService.getAllOrganisations();
     }
