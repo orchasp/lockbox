@@ -1,4 +1,5 @@
 package com.orchasp.app.induslockbox.entity;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,19 +13,19 @@ public class Bank {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@NotBlank
-	@Size(max=50)
+	@Size(max = 50)
 	private String accountHolderName;
 	@NotBlank
-	@Size(max=15)
+	@Size(max = 15)
 	private String bankAccountNumber;
-	@NotBlank 
-	@Size(max=20)
+	@NotBlank
+	@Size(max = 20)
 	private String IFCcode;
 	@NotBlank
-	@Size(max=30)
+	@Size(max = 30)
 	private String bankName;
 	@NotBlank
-     @Size(max=50)
+	@Size(max = 50)
 	private String branch;
 
 	@NotBlank
@@ -39,10 +40,10 @@ public class Bank {
 	@NotBlank
 	private Long transactionCode;
 	@NotBlank
-      @Size(max=20)
+	@Size(max = 20)
 	private String accountType;
 	@NotBlank
-      @Size(max=20)
+	@Size(max = 20)
 	private String password;
 
 	public Long getId() {
@@ -133,7 +134,6 @@ public class Bank {
 		this.password = password;
 	}
 
-
 	public Long getRBIcode() {
 		return RBIcode;
 	}
@@ -142,11 +142,4 @@ public class Bank {
 		RBIcode = rBIcode;
 	}
 
-	
-
 }
-
-
-
-
-
