@@ -1,5 +1,6 @@
 package com.orchasp.app.induslockbox.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -11,14 +12,18 @@ public class GST {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private String GStname;
+	 @Column(length = 50)
+	  private String GStname;
 
-	private String gstNumber;
-	
-	private String userid;
-	
-	private String password;
-
+	    @Column(length = 20)
+	    private String gstNumber;
+	    
+	    @Column(length = 30)
+	    private String userid;
+	    
+	    @Column(length = 255)
+	    private String password;
+	    
 	public Long getId() {
 		return id;
 	}
