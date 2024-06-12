@@ -31,12 +31,12 @@ public class CompanyController {
 
     @GetMapping("/fetchall")
     public List<Company> getAllOrganisations() {
-        return organisationService.getAllOrganisations();
+        return organisationService.getAllCompanies();
     }
 
     @GetMapping("/company/{id}")
     public ResponseEntity<Company> getOrganisationById(@PathVariable Long id) {
-        Optional<Company> organisation = organisationService.getOrganisationById(id);
+        Optional<Company> organisation = organisationService.getCompanyById(id);
         if (organisation.isPresent()) {
             return ResponseEntity.ok(organisation.get());
         } else {
@@ -46,7 +46,7 @@ public class CompanyController {
 
     @GetMapping("/name/{companyname}")
     public ResponseEntity<Company> getOrganisationByName(@PathVariable String companyname) {
-        Optional<Company> organisation = organisationService.getOrganisationByName(companyname);
+        Optional<Company> organisation = organisationService.getCompanyByName(companyname);
         if (organisation.isPresent()) {
             return ResponseEntity.ok(organisation.get());
         } else {
@@ -55,12 +55,12 @@ public class CompanyController {
     }
 
     @PostMapping("/save")
-    public Company createOrganisation(@RequestBody Company organisation) {
-        return organisationService.createOrganisation(organisation);
+    public Company createCompany(@RequestBody Company organisation) {
+        return organisationService.createCompany(organisation);
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Company> updateOrganisation(@PathVariable Long id, @RequestBody Company organisationDetails) {
+    public ResponseEntity<Company> updateCompany(@PathVariable Long id, @RequestBody Company organisationDetails) {
         Company updatedOrganisation = organisationService.updateOrganisation(id, organisationDetails);
         if (updatedOrganisation != null) {
             return ResponseEntity.ok(updatedOrganisation);
@@ -71,7 +71,7 @@ public class CompanyController {
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deleteOrganisation(@PathVariable Long id) {
-        organisationService.deleteOrganisation(id);
+        organisationService.deleteCompany(id);
         return ResponseEntity.noContent().build();
     }
     
