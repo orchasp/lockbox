@@ -13,7 +13,7 @@ public class Bank {
 	private Long id;
 	@Size(max=50)
 	private String accountHolderName;
-
+	@Size(max=12)
 	private String bankAccountNumber;
 
 	private String IFCcode;
@@ -25,6 +25,8 @@ public class Bank {
 	private Long IRCcode;
 
 	private Long MRCcode;
+	
+	private Long RBIcode;
 
 	private Long transactionCode;
 
@@ -118,6 +120,14 @@ public class Bank {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public Long getRBIcode() {
+		return RBIcode;
+	}
+
+	public void setRBIcode(Long rBIcode) {
+		RBIcode = rBIcode;
 	}
 	
 	
