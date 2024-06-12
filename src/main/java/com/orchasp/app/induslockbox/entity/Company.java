@@ -31,6 +31,20 @@ public class Company {
 	@JoinColumn(name = "incomeTax_id", referencedColumnName = "id")
 	private IncomeTax incomeTax;
 
+	//one-to-one mapping with Organization entity class
+		@OneToOne(cascade = CascadeType.ALL)
+		@JoinColumn(name = "organization_id", referencedColumnName = "id")
+		private Organization organization;
+
+	
+	public Organization getOrganization() {
+			return organization;
+		}
+
+		public void setOrganization(Organization organization) {
+			this.organization = organization;
+		}
+
 	//one-to-one mapping with EPF entity class
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "epf_id", referencedColumnName = "id")
