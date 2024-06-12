@@ -10,17 +10,17 @@ import com.orchasp.app.induslockbox.entity.Bank;
 import com.orchasp.app.induslockbox.entity.EPF;
 import com.orchasp.app.induslockbox.entity.GST;
 import com.orchasp.app.induslockbox.entity.IncomeTax;
-import com.orchasp.app.induslockbox.entity.Organisation;
+import com.orchasp.app.induslockbox.entity.Company;
 import com.orchasp.app.induslockbox.repository.BankRepository;
 import com.orchasp.app.induslockbox.repository.EPFRepository;
 import com.orchasp.app.induslockbox.repository.GSTRepository;
 import com.orchasp.app.induslockbox.repository.IncomeTaxRepository;
-import com.orchasp.app.induslockbox.repository.OrganisationRepository;
+import com.orchasp.app.induslockbox.repository.CompanyRepository;
 
 @Service
-public class OrganisationService {
+public class CompanyService {
 	@Autowired
-	private OrganisationRepository organisationRepository;
+	private CompanyRepository organisationRepository;
 	@Autowired
 	private BankRepository bankRepository;
 
@@ -33,26 +33,26 @@ public class OrganisationService {
 	@Autowired
 	private EPFRepository epfRepository;
 
-	public List<Organisation> getAllOrganisations() {
+	public List<Company> getAllOrganisations() {
 		return organisationRepository.findAll();
 	}
 
-	public Optional<Organisation> getOrganisationById(Long id) {
+	public Optional<Company> getOrganisationById(Long id) {
 		return organisationRepository.findById(id);
 	}
 
-	public Optional<Organisation> getOrganisationByName(String companyname) {
+	public Optional<Company> getOrganisationByName(String companyname) {
 		return organisationRepository.findByCompanyname(companyname);
 	}
 
-	public Organisation createOrganisation(Organisation organisation) {
+	public Company createOrganisation(Company organisation) {
 		return organisationRepository.save(organisation);
 	}
 
-	public Organisation updateOrganisation(Long id, Organisation organisationDetails) {
-		Optional<Organisation> optionalOrganisation = organisationRepository.findById(id);
+	public Company updateOrganisation(Long id, Company organisationDetails) {
+		Optional<Company> optionalOrganisation = organisationRepository.findById(id);
 		if (optionalOrganisation.isPresent()) {
-			Organisation existingOrganisation = optionalOrganisation.get();
+			Company existingOrganisation = optionalOrganisation.get();
 
 			// organisation
 			existingOrganisation.setCompanyname(organisationDetails.getCompanyname());

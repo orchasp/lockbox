@@ -18,25 +18,25 @@ import com.orchasp.app.induslockbox.entity.Bank;
 import com.orchasp.app.induslockbox.entity.EPF;
 import com.orchasp.app.induslockbox.entity.GST;
 import com.orchasp.app.induslockbox.entity.IncomeTax;
-import com.orchasp.app.induslockbox.entity.Organisation;
-import com.orchasp.app.induslockbox.service.OrganisationService;
+import com.orchasp.app.induslockbox.entity.Company;
+import com.orchasp.app.induslockbox.service.CompanyService;
 
 
 
 @RestController
 @RequestMapping("/organisations")
-public class OrganisationController {
+public class CompanyController {
     @Autowired
-    private OrganisationService organisationService;
+    private CompanyService organisationService;
 
     @GetMapping
-    public List<Organisation> getAllOrganisations() {
+    public List<Company> getAllOrganisations() {
         return organisationService.getAllOrganisations();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Organisation> getOrganisationById(@PathVariable Long id) {
-        Optional<Organisation> organisation = organisationService.getOrganisationById(id);
+    public ResponseEntity<Company> getOrganisationById(@PathVariable Long id) {
+        Optional<Company> organisation = organisationService.getOrganisationById(id);
         if (organisation.isPresent()) {
             return ResponseEntity.ok(organisation.get());
         } else {
@@ -45,8 +45,8 @@ public class OrganisationController {
     }
 
     @GetMapping("/name/{companyname}")
-    public ResponseEntity<Organisation> getOrganisationByName(@PathVariable String companyname) {
-        Optional<Organisation> organisation = organisationService.getOrganisationByName(companyname);
+    public ResponseEntity<Company> getOrganisationByName(@PathVariable String companyname) {
+        Optional<Company> organisation = organisationService.getOrganisationByName(companyname);
         if (organisation.isPresent()) {
             return ResponseEntity.ok(organisation.get());
         } else {
@@ -55,13 +55,13 @@ public class OrganisationController {
     }
 
     @PostMapping("/save")
-    public Organisation createOrganisation(@RequestBody Organisation organisation) {
+    public Company createOrganisation(@RequestBody Company organisation) {
         return organisationService.createOrganisation(organisation);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Organisation> updateOrganisation(@PathVariable Long id, @RequestBody Organisation organisationDetails) {
-        Organisation updatedOrganisation = organisationService.updateOrganisation(id, organisationDetails);
+    public ResponseEntity<Company> updateOrganisation(@PathVariable Long id, @RequestBody Company organisationDetails) {
+        Company updatedOrganisation = organisationService.updateOrganisation(id, organisationDetails);
         if (updatedOrganisation != null) {
             return ResponseEntity.ok(updatedOrganisation);
         } else {
