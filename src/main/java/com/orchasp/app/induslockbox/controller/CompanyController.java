@@ -29,7 +29,7 @@ public class CompanyController {
     @Autowired
     private CompanyService companyService;
 
-    @GetMapping("/fetchall")
+    @GetMapping("/getall")
     public List<Company> getAllCompanies() {
         return companyService.getAllCompanies();
     }

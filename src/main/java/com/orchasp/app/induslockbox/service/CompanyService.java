@@ -11,13 +11,11 @@ import com.orchasp.app.induslockbox.entity.Company;
 import com.orchasp.app.induslockbox.entity.EPF;
 import com.orchasp.app.induslockbox.entity.GST;
 import com.orchasp.app.induslockbox.entity.IncomeTax;
-import com.orchasp.app.induslockbox.entity.Organization;
 import com.orchasp.app.induslockbox.repository.BankRepository;
 import com.orchasp.app.induslockbox.repository.CompanyRepository;
 import com.orchasp.app.induslockbox.repository.EPFRepository;
 import com.orchasp.app.induslockbox.repository.GSTRepository;
 import com.orchasp.app.induslockbox.repository.IncomeTaxRepository;
-import com.orchasp.app.induslockbox.repository.OrganizationRepository;
 
 @Service
 public class CompanyService {
@@ -37,8 +35,6 @@ public class CompanyService {
     @Autowired
     private EPFRepository epfRepository;
     
-    @Autowired
-    private OrganizationRepository organizationRepository;
 
     public List<Company> getAllCompanies() {
         return companyRepository.findAll();
@@ -124,7 +120,5 @@ public class CompanyService {
     public Optional<EPF> getEPFByCompanyId(Long companyId) {
         return epfRepository.findById(companyId);
     }
-    public Optional<Organization>getOrganizationById(Long organizationId){
-    	return organizationRepository.findById(organizationId);
-    }
+   
 }
