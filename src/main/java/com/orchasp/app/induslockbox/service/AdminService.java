@@ -36,5 +36,6 @@ public class AdminService {
 				request.getEmail(),
 				encoder.encode(request.getPassword()),
 				Role.USER);
+		return null;
 	}
 }
