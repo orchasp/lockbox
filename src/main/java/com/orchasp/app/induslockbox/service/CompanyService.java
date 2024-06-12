@@ -7,108 +7,124 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.orchasp.app.induslockbox.entity.Bank;
+import com.orchasp.app.induslockbox.entity.Company;
 import com.orchasp.app.induslockbox.entity.EPF;
 import com.orchasp.app.induslockbox.entity.GST;
 import com.orchasp.app.induslockbox.entity.IncomeTax;
-import com.orchasp.app.induslockbox.entity.Company;
+import com.orchasp.app.induslockbox.entity.Organization;
 import com.orchasp.app.induslockbox.repository.BankRepository;
+import com.orchasp.app.induslockbox.repository.CompanyRepository;
 import com.orchasp.app.induslockbox.repository.EPFRepository;
 import com.orchasp.app.induslockbox.repository.GSTRepository;
 import com.orchasp.app.induslockbox.repository.IncomeTaxRepository;
-import com.orchasp.app.induslockbox.repository.CompanyRepository;
+import com.orchasp.app.induslockbox.repository.OrganizationRepository;
 
 @Service
 public class CompanyService {
-	@Autowired
-	private CompanyRepository organisationRepository;
-	@Autowired
-	private BankRepository bankRepository;
 
-	@Autowired
-	private GSTRepository gstRepository;
+    @Autowired
+    private CompanyRepository companyRepository;
 
-	@Autowired
-	private IncomeTaxRepository incomeTaxRepository;
+    @Autowired
+    private BankRepository bankRepository;
 
-	@Autowired
-	private EPFRepository epfRepository;
+    @Autowired
+    private GSTRepository gstRepository;
 
-	public List<Company> getAllOrganisations() {
-		return organisationRepository.findAll();
-	}
+    @Autowired
+    private IncomeTaxRepository incomeTaxRepository;
 
-	public Optional<Company> getOrganisationById(Long id) {
-		return organisationRepository.findById(id);
-	}
+    @Autowired
+    private EPFRepository epfRepository;
+    
+    @Autowired
+    private OrganizationRepository organizationRepository;
 
-	public Optional<Company> getOrganisationByName(String companyname) {
-		return organisationRepository.findByCompanyname(companyname);
-	}
-
-	public Company createOrganisation(Company organisation) {
-		return organisationRepository.save(organisation);
-	}
-
-	public Company updateOrganisation(Long id, Company organisationDetails) {
-		Optional<Company> optionalOrganisation = organisationRepository.findById(id);
-		if (optionalOrganisation.isPresent()) {
-			Company existingOrganisation = optionalOrganisation.get();
-
-			// organisation
-			existingOrganisation.setCompanyname(organisationDetails.getCompanyname());
-
-			// GST
-			if (existingOrganisation.getGst() != null && organisationDetails.getGst() != null) {
-				existingOrganisation.getGst().setGstNumber(organisationDetails.getGst().getGstNumber());
-			} else {
-				existingOrganisation.setGst(organisationDetails.getGst());
-			}
-
-			// Bank
-			if (existingOrganisation.getBank() != null && organisationDetails.getBank() != null) {
-				existingOrganisation.getBank()
-						.setBankAccountNumber(organisationDetails.getBank().getBankAccountNumber());
-			} else {
-				existingOrganisation.setBank(organisationDetails.getBank());
-			}
-
-			// IncomeTax
-			if (existingOrganisation.getIncomeTax() != null && organisationDetails.getIncomeTax() != null) {
-				existingOrganisation.getIncomeTax().setPanNumber(organisationDetails.getIncomeTax().getPanNumber());
-			} else {
-				existingOrganisation.setIncomeTax(organisationDetails.getIncomeTax());
-			}
-
-			// EPF
-			if (existingOrganisation.getEpf() != null && organisationDetails.getEpf() != null) {
-				existingOrganisation.getEpf().setEpfNumber(organisationDetails.getEpf().getEpfNumber());
-			} else {
-				existingOrganisation.setEpf(organisationDetails.getEpf());
-			}
-
-			return organisationRepository.save(existingOrganisation);
-		} else {
-			return null;
-		}
-	}
-
-	public void deleteOrganisation(Long id) {
-		organisationRepository.deleteById(id);
-	}
-
-	public Optional<Bank> getBanksByCompanyId(Long companyid) {
-        return bankRepository.findById(companyid);
+    public List<Company> getAllCompanies() {
+        return companyRepository.findAll();
     }
 
-    public Optional<GST> getGSTByCompanyId(Long companyid) {
-        return gstRepository.findById(companyid);
+    public Optional<Company> getCompanyById(Long id) {
+        return companyRepository.findById(id);
     }
 
-    public Optional<IncomeTax> getIncomeTaxByCompanyId(Long companyid) {
-        return incomeTaxRepository.findById(companyid);
+    public Optional<Company> getCompanyByName(String companyName) {
+        return companyRepository.findByCompanyname(companyName);
     }
 
-    public Optional<EPF> getEPFByCompanyId(Long companyid) {
-        return epfRepository.findById(companyid);
+    public Company createCompany(Company company) {
+        return companyRepository.save(company);
+    }
+
+    public Company updateCompany(Long id, Company companyDetails) {
+        Optional<Company> optionalCompany = companyRepository.findById(id);
+        if (optionalCompany.isPresent()) {
+            Company existingCompany = optionalCompany.get();
+
+            // Update company fields
+            if (companyDetails.getCompanyname() != null) {
+                existingCompany.setCompanyname(companyDetails.getCompanyname());
+            }
+
+            // Update GST
+            if (existingCompany.getGst() != null && companyDetails.getGst() != null) {
+                existingCompany.getGst().setGstNumber(companyDetails.getGst().getGstNumber());
+            } else if (companyDetails.getGst() != null) {
+                existingCompany.setGst(companyDetails.getGst());
+            }
+
+            // Update Bank
+            if (existingCompany.getBank() != null && companyDetails.getBank() != null) {
+                existingCompany.getBank().setBankAccountNumber(companyDetails.getBank().getBankAccountNumber());
+            } else if (companyDetails.getBank() != null) {
+                existingCompany.setBank(companyDetails.getBank());
+            }
+
+            // Update IncomeTax
+            if (existingCompany.getIncomeTax() != null && companyDetails.getIncomeTax() != null) {
+                existingCompany.getIncomeTax().setPanNumber(companyDetails.getIncomeTax().getPanNumber());
+            } else if (companyDetails.getIncomeTax() != null) {
+                existingCompany.setIncomeTax(companyDetails.getIncomeTax());
+            }
+
+            // Update EPF
+            if (existingCompany.getEpf() != null && companyDetails.getEpf() != null) {
+                existingCompany.getEpf().setEpfNumber(companyDetails.getEpf().getEpfNumber());
+            } else if (companyDetails.getEpf() != null) {
+                existingCompany.setEpf(companyDetails.getEpf());
+            }
+
+            return companyRepository.save(existingCompany);
+        } else {
+            return null;
+        }
+    }
+
+    public boolean deleteCompany(Long id) {
+        if (companyRepository.existsById(id)) {
+            companyRepository.deleteById(id);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public Optional<Bank> getBanksByCompanyId(Long companyId) {
+        return bankRepository.findById(companyId);
+    }
+
+    public Optional<GST> getGSTByCompanyId(Long companyId) {
+        return gstRepository.findById(companyId);
+    }
+
+    public Optional<IncomeTax> getIncomeTaxByCompanyId(Long companyId) {
+        return incomeTaxRepository.findById(companyId);
+    }
+
+    public Optional<EPF> getEPFByCompanyId(Long companyId) {
+        return epfRepository.findById(companyId);
+    }
+    public Optional<Organization>getOrganizationById(Long organizationId){
+    	return organizationRepository.findById(organizationId);
     }
 }

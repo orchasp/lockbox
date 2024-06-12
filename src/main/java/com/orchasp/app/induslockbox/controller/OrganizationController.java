@@ -39,7 +39,7 @@ public class OrganizationController {
 	    }
 	  @PutMapping("/update/{id}")
 		public Organization updateOrganization(@PathVariable Long id, @RequestBody Organization organization) {
-			return organizationService.updateOrganization(id,  organization);
+			return organizationService.updateOrganization(id,organization);
 		}
 }
 

@@ -27,58 +27,58 @@ import com.orchasp.app.induslockbox.service.CompanyService;
 @RequestMapping("/company")
 public class CompanyController {
     @Autowired
-    private CompanyService organisationService;
+    private CompanyService companyService;
 
     @GetMapping("/fetchall")
-    public List<Company> getAllOrganisations() {
-        return organisationService.getAllOrganisations();
+    public List<Company> getAllCompanies() {
+        return companyService.getAllCompanies();
     }
 
     @GetMapping("/company/{id}")
-    public ResponseEntity<Company> getOrganisationById(@PathVariable Long id) {
-        Optional<Company> organisation = organisationService.getOrganisationById(id);
-        if (organisation.isPresent()) {
-            return ResponseEntity.ok(organisation.get());
+    public ResponseEntity<Company> getCompanyById(@PathVariable Long id) {
+        Optional<Company> obj = companyService.getCompanyById(id);
+        if (obj.isPresent()) {
+            return ResponseEntity.ok(obj.get());
         } else {
             return ResponseEntity.notFound().build();
         }
     }
 
     @GetMapping("/name/{companyname}")
-    public ResponseEntity<Company> getOrganisationByName(@PathVariable String companyname) {
-        Optional<Company> organisation = organisationService.getOrganisationByName(companyname);
-        if (organisation.isPresent()) {
-            return ResponseEntity.ok(organisation.get());
+    public ResponseEntity<Company> getCompanyByName(@PathVariable String companyname) {
+        Optional<Company> obj = companyService.getCompanyByName(companyname);
+        if (obj.isPresent()) {
+            return ResponseEntity.ok(obj.get());
         } else {
             return ResponseEntity.notFound().build();
         }
     }
 
     @PostMapping("/save")
-    public Company createOrganisation(@RequestBody Company organisation) {
-        return organisationService.createOrganisation(organisation);
+    public Company createCompany(@RequestBody Company company) {
+        return companyService.createCompany(company);
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Company> updateOrganisation(@PathVariable Long id, @RequestBody Company organisationDetails) {
-        Company updatedOrganisation = organisationService.updateOrganisation(id, organisationDetails);
-        if (updatedOrganisation != null) {
-            return ResponseEntity.ok(updatedOrganisation);
+    public ResponseEntity<Company> updateCompany(@PathVariable Long id, @RequestBody Company companyDetails) {
+        Company updatedCompany = companyService.updateCompany(id, companyDetails);
+        if (updatedCompany != null) {
+            return ResponseEntity.ok(updatedCompany);
         } else {
             return ResponseEntity.notFound().build();
         }
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Void> deleteOrganisation(@PathVariable Long id) {
-        organisationService.deleteOrganisation(id);
+    public ResponseEntity<Void> deleteCompany(@PathVariable Long id) {
+    	companyService.deleteCompany(id);
         return ResponseEntity.noContent().build();
     }
     
    //getting bank records
     @GetMapping("/banks/{companyid}")
-    public ResponseEntity<Optional<Bank>> getBanksByOrganisationId(@PathVariable Long companyid) {
-        Optional<Bank> banks = organisationService.getBanksByCompanyId(companyid);
+    public ResponseEntity<Optional<Bank>> getBanksByCompanyId(@PathVariable Long companyid) {
+        Optional<Bank> banks = companyService.getBanksByCompanyId(companyid);
         if (banks.isPresent()) {
             return ResponseEntity.ok(banks);
         } else {
@@ -88,8 +88,8 @@ public class CompanyController {
 
   //getting gst records
     @GetMapping("/gst/{companyid}")
-    public ResponseEntity<Optional<GST>> getGSTByOrganisationName(@PathVariable Long companyid) {
-        Optional<GST> gst = organisationService.getGSTByCompanyId(companyid);
+    public ResponseEntity<Optional<GST>> getGSTByCompanyName(@PathVariable Long companyid) {
+        Optional<GST> gst = companyService.getGSTByCompanyId(companyid);
         if (gst != null) {
             return ResponseEntity.ok(gst);
         } else {
@@ -99,8 +99,8 @@ public class CompanyController {
     
   //getting incometax records
     @GetMapping("/incometax/{companyid}")
-    public ResponseEntity<Optional<IncomeTax>> getIncomeTaxByOrganisationName(@PathVariable Long companyid) {
-        Optional<IncomeTax> incomeTax = organisationService.getIncomeTaxByCompanyId(companyid);
+    public ResponseEntity<Optional<IncomeTax>> getIncomeTaxByCompanyName(@PathVariable Long companyid) {
+        Optional<IncomeTax> incomeTax = companyService.getIncomeTaxByCompanyId(companyid);
         if (incomeTax != null) {
             return ResponseEntity.ok(incomeTax);
         } else {
@@ -110,8 +110,8 @@ public class CompanyController {
 
   //getting epf records
     @GetMapping("/epf/{companyid}")
-    public ResponseEntity<Optional<EPF>> getEPFByOrganisationName(@PathVariable Long companyid) {
-        Optional<EPF> epf = organisationService.getEPFByCompanyId(companyid);
+    public ResponseEntity<Optional<EPF>> getEPFByCompanyName(@PathVariable Long companyid) {
+        Optional<EPF> epf = companyService.getEPFByCompanyId(companyid);
         if (epf != null) {
             return ResponseEntity.ok(epf);
         } else {
