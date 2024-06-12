@@ -92,11 +92,11 @@ public class Company {
 	}
 
 	public String getIncorporationDate() {
-		return incorporationDate;
+		return inceptionDate;
 	}
 
-	public void setIncorporationDate(String incorporationDate) {
-		this.incorporationDate = incorporationDate;
+	public void setIncorporationDate(String inceptionDate) {
+		this.inceptionDate = inceptionDate;
 	}
 
 	public String getRegisterNo() {
