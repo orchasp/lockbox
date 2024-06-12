@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.orchasp.app.induslockbox.entity.Organization;
+import com.orchasp.app.induslockbox.service.OrganizationService;
 
 
 @RestController
@@ -21,7 +22,7 @@ public class OrganizationController {
 	  
 	  @PostMapping("/save") 
 		 public Organization saveOrganization(@RequestBody Organization organization) {
-			 return organizationService.saveOrganization(organization);
+			 return organizationService.addOrganization(organization);
 		 }
 	  @GetMapping("/{id}")
 		 public Organization getOrganizationdById(@PathVariable long id) {
@@ -29,7 +30,7 @@ public class OrganizationController {
 		 }
 	  @GetMapping("/fetchall")
 	    public List<Organization> getOrganization() {
-	        return organizationService.getAllOrganization();
+	        return organizationService.getAllOrganizations();
 	    }
 	  @DeleteMapping("/{id}")
 	    public Organization deleteOrganization(@PathVariable Long id) {
@@ -43,4 +44,4 @@ public class OrganizationController {
 }
 
 
-}
+
