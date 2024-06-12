@@ -14,20 +14,20 @@ public class OrganizationService {
 	@Autowired
 	private OrganizationRepository repo;
 	
-	public Organization addOrganization(Organization organization) {
+	public Organization saveOrganization(Organization organization) {
 		return repo.save(organization);
 	}
 	public List<Organization> getAllOrganizations(){
 		return repo.findAll();
 	}
-	public Organization fetchById(Long id) {
+	public Organization getOrganizationById(Long id) {
 		Optional<Organization>k=repo.findById(id);
 		if(k.isPresent())
 			return k.get();
 		else
 			return null;
 	}
-	public Organization updateById(Organization organization)
+	public Organization updateOrganization(Long id, Organization organization)
 	{
 		Optional<Organization>k=repo.findById(organization.getId());
 		Organization o=k.get();
