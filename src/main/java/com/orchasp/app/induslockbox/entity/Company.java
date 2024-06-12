@@ -21,7 +21,7 @@ public class Company {
 	@NotBlank
 	private String director;
 	@NotBlank
-	private String incorporationDate;
+	private String inceptionDate;
 	@NotBlank
 	private String registerNo;
 	@NotBlank
