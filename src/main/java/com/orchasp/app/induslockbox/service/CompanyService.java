@@ -63,8 +63,8 @@ public class CompanyService {
 			if(companyDetails.getDirector()==null) {
 				companyDetails.setDirector(existingCompany.getDirector());
 			}
-			if (companyDetails.getIncorporationDate() == null) {
-	            companyDetails.setIncorporationDate(existingCompany.getIncorporationDate());
+			if (companyDetails.getInceptionDate() == null) {
+	            companyDetails.setInceptionDate(existingCompany.getInceptionDate());
 	        }
 	        if (companyDetails.getRegisterNo() == null) {
 	            companyDetails.setRegisterNo(existingCompany.getRegisterNo());

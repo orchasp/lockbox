@@ -21,7 +21,7 @@ public class Company {
 	@NotBlank
 	private String director;
 	@NotBlank
-	private String incorporationDate;
+	private String inceptionDate;
 	@NotBlank
 	private String registerNo;
 	@NotBlank
@@ -91,12 +91,12 @@ public class Company {
 		this.director = director;
 	}
 
-	public String getIncorporationDate() {
-		return incorporationDate;
+	public String getInceptionDate() {
+		return inceptionDate;
 	}
 
-	public void setIncorporationDate(String incorporationDate) {
-		this.incorporationDate = incorporationDate;
+	public void setInceptionDate(String inceptionDate) {
+		this.inceptionDate = inceptionDate;
 	}
 
 	public String getRegisterNo() {
