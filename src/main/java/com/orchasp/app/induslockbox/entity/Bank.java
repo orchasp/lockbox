@@ -12,7 +12,7 @@ public class Bank {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@Size(max=50)
-	private String accountHolderName==============;
+	private String accountHolderName;
 	@Size(max=12)
 	private String bankAccountNumber;
 
