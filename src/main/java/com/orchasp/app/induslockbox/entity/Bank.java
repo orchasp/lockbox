@@ -1,9 +1,9 @@
 package com.orchasp.app.induslockbox.entity;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+
 import jakarta.validation.constraints.Size;
 
 @Entity
@@ -25,8 +25,10 @@ public class Bank {
 	private Long IRCcode;
 
 	private Long MRCcode;
+
 	
 	private Long RBIcode;
+
 
 	private Long transactionCode;
 
@@ -122,6 +124,7 @@ public class Bank {
 		this.password = password;
 	}
 
+
 	public Long getRBIcode() {
 		return RBIcode;
 	}
@@ -129,7 +132,12 @@ public class Bank {
 	public void setRBIcode(Long rBIcode) {
 		RBIcode = rBIcode;
 	}
-	
+
 	
 
 }
+
+
+
+
+

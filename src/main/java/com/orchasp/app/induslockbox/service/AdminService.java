@@ -18,7 +18,7 @@ public class AdminService {
 	
 	@Autowired
 	private PasswordEncoder encoder;
-	
+
 	public ResponseEntity<?> signup(SignUpRequest request) {
 		if(adminRepository.existsByUserName(request.getUserName())) {
 			return ResponseEntity
