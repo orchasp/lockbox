@@ -8,11 +8,13 @@ import org.springframework.stereotype.Service;
 
 import com.orchasp.app.induslockbox.entity.Bank;
 import com.orchasp.app.induslockbox.entity.Company;
+import com.orchasp.app.induslockbox.entity.Director;
 import com.orchasp.app.induslockbox.entity.EPF;
 import com.orchasp.app.induslockbox.entity.GST;
 import com.orchasp.app.induslockbox.entity.IncomeTax;
 import com.orchasp.app.induslockbox.repository.BankRepository;
 import com.orchasp.app.induslockbox.repository.CompanyRepository;
+import com.orchasp.app.induslockbox.repository.DirectorRepository;
 import com.orchasp.app.induslockbox.repository.EPFRepository;
 import com.orchasp.app.induslockbox.repository.GSTRepository;
 import com.orchasp.app.induslockbox.repository.IncomeTaxRepository;
@@ -27,6 +29,9 @@ public class CompanyService {
 	@Autowired
 	private GSTRepository gstRepository;
 
+	@Autowired
+	private DirectorRepository directorRepository;
+	
 	@Autowired
 	private IncomeTaxRepository incomeTaxRepository;
 
@@ -60,9 +65,7 @@ public class CompanyService {
 			if(companyDetails.getCompanyname()==null) {
 				companyDetails.setCompanyname(existingCompany.getCompanyname());
 			}
-			if(companyDetails.getDirector()==null) {
-				companyDetails.setDirector(existingCompany.getDirector());
-			}
+			
 			if (companyDetails.getIncorporationDate() == null) {
 	            companyDetails.setIncorporationDate(existingCompany.getIncorporationDate());
 	        }
@@ -109,6 +112,14 @@ public class CompanyService {
 				existingCompany.setBank(companyDetails.getBank());
 			}
 
+			// Director
+			if (existingCompany.getDirector() != null && companyDetails.getDirector() != null) {
+				existingCompany.getDirector()
+							.setName(companyDetails.getDirector().getName());
+			} else {
+				existingCompany.setBank(companyDetails.getBank());
+			}
+			
 			// IncomeTax
 			if (existingCompany.getIncomeTax() != null && companyDetails.getIncomeTax() != null) {
 				existingCompany.getIncomeTax().setPanNumber(companyDetails.getIncomeTax().getPanNumber());
@@ -135,6 +146,10 @@ public class CompanyService {
 
 	public Optional<Bank> getBanksByCompanyId(Long companyid) {
         return bankRepository.findById(companyid);
+    }
+	
+	public Optional<Director> getDirectorByCompanyId(Long companyid) {
+        return directorRepository.findById(companyid);
     }
 
     public Optional<GST> getGSTByCompanyId(Long companyid) {

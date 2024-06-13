@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.orchasp.app.induslockbox.entity.Bank;
 import com.orchasp.app.induslockbox.entity.Company;
+import com.orchasp.app.induslockbox.entity.Director;
 import com.orchasp.app.induslockbox.entity.EPF;
 import com.orchasp.app.induslockbox.entity.GST;
 import com.orchasp.app.induslockbox.entity.IncomeTax;
@@ -102,6 +103,16 @@ public class CompanyController {
         Optional<IncomeTax> incomeTax = organisationService.getIncomeTaxByCompanyId(companyid);
         if (incomeTax != null) {
             return ResponseEntity.ok(incomeTax);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+    
+    @GetMapping("/director/{companyid}")
+    public ResponseEntity<Optional<Director>> getDirectorByOrganisationName(@PathVariable Long companyid) {
+        Optional<Director> director = organisationService.getDirectorByCompanyId(companyid);
+        if (director != null) {
+            return ResponseEntity.ok(director);
         } else {
             return ResponseEntity.notFound().build();
         }
