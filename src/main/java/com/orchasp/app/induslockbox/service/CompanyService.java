@@ -125,13 +125,20 @@ public class CompanyService {
 			} else {
 				existingCompany.setEpf(companyDetails.getEpf());
 			}
-
-			return organisationRepository.save(existingCompany);
+	
+	// Director
+				if (existingCompany.getDirector() != null && companyDetails.getDirector() != null) {
+					existingCompany.getDirector().setName(companyDetails.getDirector().getName());
+					existingCompany.getDirector().setEmail(companyDetails.getDirector().getEmail());;
+				} else {
+					existingCompany.setBank(companyDetails.getBank());
+				}
+				return organisationRepository.save(existingCompany);
 		} else {
 			return null;
 		}
 	}
-
+	
 	public void deleteCompany(Long id) {
 		organisationRepository.deleteById(id);
 	}

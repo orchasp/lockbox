@@ -18,8 +18,7 @@ public class Company {
 	private String organizationCode;
 	@NotBlank
 	private String companyname;
-	@NotBlank
-	private String director;
+	
 	@NotBlank
 	private String inceptionDate;
 	@NotBlank
@@ -58,6 +57,11 @@ public class Company {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "epf_id", referencedColumnName = "id")
 	private EPF epf;
+	
+	// one-to-one mapping with Director entity class
+		@OneToOne(cascade = CascadeType.ALL)
+		@JoinColumn(name = "director_id", referencedColumnName = "id")
+		private Director director;
 
 	public Long getCompanyid() {
 		return companyid;
@@ -83,13 +87,7 @@ public class Company {
 		this.companyname = companyname;
 	}
 
-	public String getDirector() {
-		return director;
-	}
-
-	public void setDirector(String director) {
-		this.director = director;
-	}
+	
 
 	public String getInceptionDate() {
 		return inceptionDate;
@@ -194,5 +192,15 @@ public class Company {
 	public void setEpf(EPF epf) {
 		this.epf = epf;
 	}
+
+	public Director getDirector() {
+		return director;
+	}
+
+	public void setDirector(Director director) {
+		this.director = director;
+	}
+	
+	
 
 }
