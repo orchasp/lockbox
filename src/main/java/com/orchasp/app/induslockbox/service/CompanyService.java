@@ -6,29 +6,16 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.orchasp.app.induslockbox.entity.Bank;
 import com.orchasp.app.induslockbox.entity.Company;
-import com.orchasp.app.induslockbox.entity.Director;
-import com.orchasp.app.induslockbox.entity.EPF;
-import com.orchasp.app.induslockbox.entity.GST;
-import com.orchasp.app.induslockbox.entity.IncomeTax;
-import com.orchasp.app.induslockbox.repository.BankRepository;
 import com.orchasp.app.induslockbox.repository.CompanyRepository;
-import com.orchasp.app.induslockbox.repository.DirectorRepository;
-import com.orchasp.app.induslockbox.repository.EPFRepository;
-import com.orchasp.app.induslockbox.repository.GSTRepository;
-import com.orchasp.app.induslockbox.repository.IncomeTaxRepository;
 
 @Service
 public class CompanyService {
-	@Autowired
-	private CompanyRepository organisationRepository;
-	@Autowired
-	private BankRepository bankRepository;
 
-	@Autowired
-	private GSTRepository gstRepository;
+    @Autowired
+    private  CompanyRepository  CompanyRepository;
 
+<<<<<<< HEAD
 	@Autowired
 	private IncomeTaxRepository incomeTaxRepository;
 
@@ -149,21 +136,51 @@ public class CompanyService {
 
 	public Optional<Bank> getBanksByCompanyId(Long companyid) {
         return bankRepository.findById(companyid);
+=======
+    public List< Company> findAll() {
+        return CompanyRepository.findAll();
+>>>>>>> 2bab7318d52299c06ca93ea5080e89e923054a3d
     }
 
-    public Optional<GST> getGSTByCompanyId(Long companyid) {
-        return gstRepository.findById(companyid);
+    public Optional< Company> findById(Long id) {
+        return CompanyRepository.findById(id);
+    }
+    
+    public Company updateCompany(Long id, Company updatedCompany) {
+        Optional<Company> existingCompanyOpt = CompanyRepository.findById(id);
+        if (existingCompanyOpt.isPresent()) {
+            Company existingCompany = existingCompanyOpt.get();
+
+            existingCompany.setOrganizationCode(updatedCompany.getOrganizationCode());
+            existingCompany.setCompanyname(updatedCompany.getCompanyname());
+            existingCompany.setInceptionDate(updatedCompany.getInceptionDate());
+            existingCompany.setRegisterNo(updatedCompany.getRegisterNo());
+            existingCompany.setPhoneNo(updatedCompany.getPhoneNo());
+            existingCompany.setEmail(updatedCompany.getEmail());
+            existingCompany.setFlatNo(updatedCompany.getFlatNo());
+            existingCompany.setWebsite(updatedCompany.getWebsite());
+            existingCompany.setCity(updatedCompany.getCity());
+            existingCompany.setState(updatedCompany.getState());
+            existingCompany.setPincode(updatedCompany.getPincode());
+
+            return CompanyRepository.save(existingCompany);
+        } else {
+            throw new RuntimeException("Company not found with id " + id);
+        }
     }
 
-    public Optional<IncomeTax> getIncomeTaxByCompanyId(Long companyid) {
-        return incomeTaxRepository.findById(companyid);
+    public  Company save( Company organisation) {
+        return CompanyRepository.save(organisation);
     }
 
-    public Optional<EPF> getEPFByCompanyId(Long companyid) {
-        return epfRepository.findById(companyid);
+    public void deleteById(Long id) {
+    	CompanyRepository.deleteById(id);
     }
+<<<<<<< HEAD
     public Optional<Director> getDirectorByCompanyId(Long companyid){
     	return directorRepository.findById(companyid);
     }
    
+=======
+>>>>>>> 2bab7318d52299c06ca93ea5080e89e923054a3d
 }

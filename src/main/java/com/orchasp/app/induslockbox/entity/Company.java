@@ -1,19 +1,18 @@
 package com.orchasp.app.induslockbox.entity;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Company {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long companyid;
+<<<<<<< HEAD
 	@NotBlank
 	private String companyname;
 	@NotBlank
@@ -25,9 +24,26 @@ public class Company {
 	@NotBlank
 	private String phoneNumber;
 	@NotBlank
+=======
+	@NotNull
+	private String organizationCode;
+	@NotNull
+	private String companyname;
+	
+	@NotNull
+	private String inceptionDate;
+	@NotNull
+	private String registerNo;
+	@NotNull
+	private Long phoneNo;
+	@NotNull
+>>>>>>> 2bab7318d52299c06ca93ea5080e89e923054a3d
 	private String email;
-	@NotBlank
+	@NotNull
+	private String flatNo;
+	@NotNull
 	private String website;
+<<<<<<< HEAD
 	@NotBlank
 	private String registerNumber;
 	@NotBlank
@@ -37,9 +53,13 @@ public class Company {
 	@NotBlank
 	private String doorNo;
 	@NotBlank
+=======
+	@NotNull
+>>>>>>> 2bab7318d52299c06ca93ea5080e89e923054a3d
 	private String city;
-	@NotBlank
+		@NotNull
 	private String state;
+<<<<<<< HEAD
 	@NotBlank
 	private String owner;
 
@@ -63,6 +83,58 @@ public class Company {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "epf_id", referencedColumnName = "id")
 	private EPF epf;
+=======
+	@NotNull
+	private Long pincode;
+
+// @OneToOne mapping with GST entity class
+	 @OneToOne(mappedBy = "company")
+	private GST gst;
+	 
+// @OneToOne mapping with Bank entity class
+	 @OneToOne(mappedBy = "company")
+	private Bank bank;
+	 
+	 //@OneToOne mapping with IncomeTax entity class
+	 @OneToOne(mappedBy = "company")
+	private IncomeTax incomeTax;
+
+	 // @OneToOne mapping with EPF entity class
+	 @OneToOne(mappedBy = "company")
+	private EPF epf;
+
+	 // @OneToOne mapping with Director entity class
+	 @OneToOne(mappedBy = "company")
+		private Director director;
+>>>>>>> 2bab7318d52299c06ca93ea5080e89e923054a3d
+
+	public Company(Long companyid, @NotNull String organizationCode, @NotNull String companyname,
+			@NotNull String inceptionDate, @NotNull String registerNo, @NotNull Long phoneNo, @NotNull String email,
+			@NotNull String flatNo, @NotNull String website, @NotNull String city, @NotNull String state,
+			@NotNull Long pincode, GST gst, Bank bank, IncomeTax incomeTax, EPF epf, Director director) {
+		super();
+		this.companyid = companyid;
+		this.organizationCode = organizationCode;
+		this.companyname = companyname;
+		this.inceptionDate = inceptionDate;
+		this.registerNo = registerNo;
+		this.phoneNo = phoneNo;
+		this.email = email;
+		this.flatNo = flatNo;
+		this.website = website;
+		this.city = city;
+		this.state = state;
+		this.pincode = pincode;
+		this.gst = gst;
+		this.bank = bank;
+		this.incomeTax = incomeTax;
+		this.epf = epf;
+		this.director = director;
+	}
+
+	public Company() {
+		super();
+	}
 
 	public Long getCompanyid() {
 		return companyid;
@@ -79,8 +151,13 @@ public class Company {
 		return companycode;
 	}
 
+<<<<<<< HEAD
 	public void setCompanycode(String companycode) {
 		this.companycode = companycode;
+=======
+	public String getInceptionDate() {
+		return inceptionDate;
+>>>>>>> 2bab7318d52299c06ca93ea5080e89e923054a3d
 	}
 
 	public String getAddress() {
@@ -107,6 +184,14 @@ public class Company {
 		this.email = email;
 	}
 
+	public String getFlatNo() {
+		return flatNo;
+	}
+
+	public void setFlatNo(String flatNo) {
+		this.flatNo = flatNo;
+	}
+
 	public String getWebsite() {
 		return website;
 	}
@@ -115,6 +200,7 @@ public class Company {
 		this.website = website;
 	}
 
+<<<<<<< HEAD
 	public String getRegisterNumber() {
 		return registerNumber;
 	}
@@ -158,6 +244,8 @@ public class Company {
 		this.doorNo = doorNo;
 	}
 
+=======
+>>>>>>> 2bab7318d52299c06ca93ea5080e89e923054a3d
 	public String getCity() {
 		return city;
 	}
@@ -213,5 +301,16 @@ public class Company {
 		this.epf = epf;
 	}
 
+<<<<<<< HEAD
+=======
+	public Director getDirector() {
+		return director;
+	}
 
+	public void setDirector(Director director) {
+		this.director = director;
+	}
+>>>>>>> 2bab7318d52299c06ca93ea5080e89e923054a3d
+
+	
 }

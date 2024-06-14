@@ -7,4 +7,5 @@ import com.orchasp.app.induslockbox.entity.EPF;
 
 @Repository
 public interface EPFRepository extends JpaRepository<EPF, Long> {
+	// List<EPF> findByCompany_Id(Long companyId);
 }

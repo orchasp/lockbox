@@ -4,53 +4,35 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-<<<<<<< HEAD
-import jakarta.persistence.ManyToOne;
-import jakarta.validation.constraints.NotBlank;
-=======
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
->>>>>>> 2bab7318d52299c06ca93ea5080e89e923054a3d
 
 @Entity
-public class GST {
+public class KMP {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String gstNumber;
+	private String name;
+	private String email;
 	private String userid;
 	private String password;
-<<<<<<< HEAD
-	@ManyToOne
+	@OneToOne
+	@JoinColumn(name = "company_id")
 	private Company company;
 
-	public Company getCompany() {
-		return company;
-	}
-
-	public void setCompany(Company company) {
-		this.company = company;
-	}
-
-=======
-	
-	 @OneToOne
-	    @JoinColumn(name="company_id")
-	    private Company company;
-
-	public GST(Long id, String gstNumber, String userid, String password, Company company) {
+	public KMP(Long id, String name, String email, String userid, String password) {
 		super();
 		this.id = id;
-		this.gstNumber = gstNumber;
+		this.name = name;
+		this.email = email;
 		this.userid = userid;
 		this.password = password;
-		this.company = company;
 	}
 
-	public GST() {
+	public KMP() {
 		super();
 	}
->>>>>>> 2bab7318d52299c06ca93ea5080e89e923054a3d
 
 	public Long getId() {
 		return id;
@@ -60,12 +42,20 @@ public class GST {
 		this.id = id;
 	}
 
-	public String getGstNumber() {
-		return gstNumber;
+	public String getName() {
+		return name;
 	}
 
-	public void setGstNumber(String gstNumber) {
-		this.gstNumber = gstNumber;
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getUserid() {
@@ -91,6 +81,5 @@ public class GST {
 	public void setCompany(Company company) {
 		this.company = company;
 	}
-	
 
 }
