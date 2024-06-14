@@ -1,5 +1,6 @@
 package com.orchasp.app.induslockbox.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,6 +19,7 @@ public class Bank {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+<<<<<<< Updated upstream
 	private String accountHolderName;
 	private String bankAccountNumber;
 	private String ifccode;
@@ -69,6 +71,39 @@ public class Bank {
 		super();
 	}
 >>>>>>> 2bab7318d52299c06ca93ea5080e89e923054a3d
+=======
+	@Size(max=50)
+    @Column(length = 50)
+	private String accountHolderName;
+
+
+    @Column(length = 20)
+    private String bankAccountNumber;
+
+    @Column(length = 11)
+    private String IFCcode;
+
+    @Column(length = 50)
+    private String bankName;
+
+    @Column(length = 50)
+    private String branch;
+
+    @Column(length = 20)
+    private Long IRCcode;
+
+    @Column(length = 20)
+    private Long MRCcode;
+
+    @Column(length = 20)
+    private Long transactionCode;
+
+    @Column(length = 10)
+    private String accountType;
+
+    @Column(length = 255)
+    private String password;
+>>>>>>> Stashed changes
 
 	public Long getId() {
 		return id;

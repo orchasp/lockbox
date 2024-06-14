@@ -1,5 +1,6 @@
 package com.orchasp.app.induslockbox.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,6 +18,11 @@ public class EPF {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+<<<<<<< Updated upstream
+=======
+	
+	@Column(length = 20)
+>>>>>>> Stashed changes
 	private String epfNumber;
 <<<<<<< HEAD
 	@ManyToOne

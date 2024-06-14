@@ -1,5 +1,6 @@
 package com.orchasp.app.induslockbox.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,6 +18,7 @@ public class GST {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+<<<<<<< Updated upstream
 	private String gstNumber;
 	private String userid;
 	private String password;
@@ -51,7 +53,21 @@ public class GST {
 		super();
 	}
 >>>>>>> 2bab7318d52299c06ca93ea5080e89e923054a3d
+=======
+	
+	 @Column(length = 50)
+	  private String GStname;
+>>>>>>> Stashed changes
 
+	    @Column(length = 20)
+	    private String gstNumber;
+	    
+	    @Column(length = 30)
+	    private String userid;
+	    
+	    @Column(length = 255)
+	    private String password;
+	    
 	public Long getId() {
 		return id;
 	}
