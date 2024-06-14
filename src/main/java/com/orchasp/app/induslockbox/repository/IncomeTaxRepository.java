@@ -7,5 +7,5 @@ import com.orchasp.app.induslockbox.entity.IncomeTax;
 
 @Repository
 public interface IncomeTaxRepository extends JpaRepository<IncomeTax, Long> {
-
+	//List<IncomeTax> findByCompany_Id(Long companyId);
 }

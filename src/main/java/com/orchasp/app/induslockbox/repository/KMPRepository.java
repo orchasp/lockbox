@@ -2,10 +2,9 @@ package com.orchasp.app.induslockbox.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-
-import com.orchasp.app.induslockbox.entity.GST;
+import com.orchasp.app.induslockbox.entity.KMP;
 
 @Repository
-public interface GSTRepository extends JpaRepository<GST, Long> {
-	//List<GST> findByCompany_Id(Long companyId);
+public interface KMPRepository extends JpaRepository<KMP, Long> {
+
 }

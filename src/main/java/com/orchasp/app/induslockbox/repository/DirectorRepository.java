@@ -7,5 +7,5 @@ import com.orchasp.app.induslockbox.entity.Director;
 
 @Repository
 public interface DirectorRepository extends JpaRepository<Director, Long> {
-
+	//List<Director> findByCompany_Id(Long companyId);
 }

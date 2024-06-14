@@ -7,5 +7,5 @@ import com.orchasp.app.induslockbox.entity.Bank;
 
 @Repository
 public interface BankRepository extends JpaRepository<Bank, Long> {
-
+	//List<Bank> findByCompany_Id(Long companyId);
 }

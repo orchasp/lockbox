@@ -8,28 +8,29 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 
 @Entity
-public class GST {
+public class KMP {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String gstNumber;
+	private String name;
+	private String email;
 	private String userid;
 	private String password;
-	
-	 @OneToOne
-	    @JoinColumn(name="company_id")
-	    private Company company;
+	@OneToOne
+	@JoinColumn(name = "company_id")
+	private Company company;
 
-	public GST(Long id, String gstNumber, String userid, String password, Company company) {
+	public KMP(Long id, String name, String email, String userid, String password) {
 		super();
 		this.id = id;
-		this.gstNumber = gstNumber;
+		this.name = name;
+		this.email = email;
 		this.userid = userid;
 		this.password = password;
-		this.company = company;
 	}
 
-	public GST() {
+	public KMP() {
 		super();
 	}
 
@@ -41,12 +42,20 @@ public class GST {
 		this.id = id;
 	}
 
-	public String getGstNumber() {
-		return gstNumber;
+	public String getName() {
+		return name;
 	}
 
-	public void setGstNumber(String gstNumber) {
-		this.gstNumber = gstNumber;
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getUserid() {
@@ -72,6 +81,5 @@ public class GST {
 	public void setCompany(Company company) {
 		this.company = company;
 	}
-	
 
 }

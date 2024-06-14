@@ -1,37 +1,39 @@
 package com.orchasp.app.induslockbox.entity;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class IncomeTax {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	  @NotBlank
-      @Size(max=12)
 	private String panNumber;
-	
-	  @NotBlank
-	    @Column(length = 50)
-	    private String name;
+	private String name;
+	private String issuedDate;
+	private String dateOfBirth;
 
-	  @NotBlank
-	 @Column(length = 10)
-	    private String issuedDate;
+	@OneToOne
+	@JoinColumn(name = "company_id")
+	private Company company;
 
+	public IncomeTax(Long id, String panNumber, String name, String issuedDate, String dateOfBirth, Company company) {
+		super();
+		this.id = id;
+		this.panNumber = panNumber;
+		this.name = name;
+		this.issuedDate = issuedDate;
+		this.dateOfBirth = dateOfBirth;
+		this.company = company;
+	}
 
-	  @NotBlank
-	    @Column(length = 10)
-
-	    
-
-	    private String dateOfBirth;
+	public IncomeTax() {
+		super();
+	}
 
 	public Long getId() {
 		return id;
@@ -40,14 +42,6 @@ public class IncomeTax {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
 
 	public String getPanNumber() {
 		return panNumber;
@@ -55,6 +49,14 @@ public class IncomeTax {
 
 	public void setPanNumber(String panNumber) {
 		this.panNumber = panNumber;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getIssuedDate() {
@@ -72,7 +74,14 @@ public class IncomeTax {
 	public void setDateOfBirth(String dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
-	
-	
 
+	public Company getCompany() {
+		return company;
+	}
+
+	public void setCompany(Company company) {
+		this.company = company;
+	}
+
+	
 }

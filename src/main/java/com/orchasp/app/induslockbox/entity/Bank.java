@@ -4,47 +4,52 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Bank {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@NotBlank
-	@Size(max = 50)
 	private String accountHolderName;
-	@NotBlank
-	@Size(max = 15)
 	private String bankAccountNumber;
-	@NotBlank
-	@Size(max = 20)
-	private String IFCcode;
-	@NotBlank
-	@Size(max = 30)
+	private String ifccode;
 	private String bankName;
-	@NotBlank
-	@Size(max = 50)
 	private String branch;
-
-	@NotBlank
-	private Long IRCcode;
-
-	@NotBlank
-	private Long MRCcode;
-
-	@NotBlank
-	private Long RBIcode;
-
-	@NotBlank
-	private Long transactionCode;
-	@NotBlank
-	@Size(max = 20)
+	private long irccode;
+	private long mrccode;
+	private long rbicode;
+	private long transactionCode;
 	private String accountType;
-	@NotBlank
-	@Size(max = 20)
 	private String password;
+	
+	 @OneToOne
+	    @JoinColumn(name="company_id")
+	    private Company company;
+
+	public Bank(Long id, String accountHolderName, String bankAccountNumber, String ifccode, String bankName,
+			String branch, long irccode, long mrccode, long rbicode, long transactionCode, String accountType,
+			String password, Company company) {
+		super();
+		this.id = id;
+		this.accountHolderName = accountHolderName;
+		this.bankAccountNumber = bankAccountNumber;
+		this.ifccode = ifccode;
+		this.bankName = bankName;
+		this.branch = branch;
+		this.irccode = irccode;
+		this.mrccode = mrccode;
+		this.rbicode = rbicode;
+		this.transactionCode = transactionCode;
+		this.accountType = accountType;
+		this.password = password;
+		this.company = company;
+	}
+
+	public Bank() {
+		super();
+	}
 
 	public Long getId() {
 		return id;
@@ -54,12 +59,28 @@ public class Bank {
 		this.id = id;
 	}
 
+	public String getAccountHolderName() {
+		return accountHolderName;
+	}
+
+	public void setAccountHolderName(String accountHolderName) {
+		this.accountHolderName = accountHolderName;
+	}
+
 	public String getBankAccountNumber() {
 		return bankAccountNumber;
 	}
 
 	public void setBankAccountNumber(String bankAccountNumber) {
 		this.bankAccountNumber = bankAccountNumber;
+	}
+
+	public String getIfccode() {
+		return ifccode;
+	}
+
+	public void setIfccode(String ifccode) {
+		this.ifccode = ifccode;
 	}
 
 	public String getBankName() {
@@ -78,36 +99,36 @@ public class Bank {
 		this.branch = branch;
 	}
 
-	public Long getIRCcode() {
-		return IRCcode;
+	public long getIrccode() {
+		return irccode;
 	}
 
-	public void setIRCcode(Long iRCcode) {
-		IRCcode = iRCcode;
+	public void setIrccode(long irccode) {
+		this.irccode = irccode;
 	}
 
-	public Long getMRCcode() {
-		return MRCcode;
+	public long getMrccode() {
+		return mrccode;
 	}
 
-	public void setMRCcode(Long mRCcode) {
-		MRCcode = mRCcode;
+	public void setMrccode(long mrccode) {
+		this.mrccode = mrccode;
 	}
 
-	public Long getTransactionCode() {
+	public long getRbicode() {
+		return rbicode;
+	}
+
+	public void setRbicode(long rbicode) {
+		this.rbicode = rbicode;
+	}
+
+	public long getTransactionCode() {
 		return transactionCode;
 	}
 
-	public void setTransactionCode(Long transactionCode) {
+	public void setTransactionCode(long transactionCode) {
 		this.transactionCode = transactionCode;
-	}
-
-	public String getIFCcode() {
-		return IFCcode;
-	}
-
-	public void setIFCcode(String iFCcode) {
-		IFCcode = iFCcode;
 	}
 
 	public String getAccountType() {
@@ -118,14 +139,6 @@ public class Bank {
 		this.accountType = accountType;
 	}
 
-	public String getAccountHolderName() {
-		return accountHolderName;
-	}
-
-	public void setAccountHolderName(String accountHolderName) {
-		this.accountHolderName = accountHolderName;
-	}
-
 	public String getPassword() {
 		return password;
 	}
@@ -134,12 +147,14 @@ public class Bank {
 		this.password = password;
 	}
 
-	public Long getRBIcode() {
-		return RBIcode;
+	public Company getCompany() {
+		return company;
 	}
 
-	public void setRBIcode(Long rBIcode) {
-		RBIcode = rBIcode;
+	public void setCompany(Company company) {
+		this.company = company;
 	}
+	 
+	
 
 }
