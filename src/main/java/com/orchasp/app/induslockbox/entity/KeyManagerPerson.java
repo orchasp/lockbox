@@ -12,8 +12,7 @@ public class KeyManagerPerson {
 	private Long id;
 	private String name;
 	private String address;
-	private String adharNumber;
-	private String panNumber;
+
 	
 	public Long getId() {
 		return id;
@@ -33,16 +32,5 @@ public class KeyManagerPerson {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public String getAdharNumber() {
-		return adharNumber;
-	}
-	public void setAdharNumber(String adharNumber) {
-		this.adharNumber = adharNumber;
-	}
-	public String getPanNumber() {
-		return panNumber;
-	}
-	public void setPanNumber(String panNumber) {
-		this.panNumber = panNumber;
-	}
+
 }

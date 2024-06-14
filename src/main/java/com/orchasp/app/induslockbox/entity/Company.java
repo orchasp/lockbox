@@ -16,15 +16,12 @@ public class Company {
 	private Long companyid;
 	@NotBlank
 	private String companyname;
-	
 	@NotBlank
-<<<<<<< HEAD
+	private String director;
+	@NotBlank
 	private String companycode;
 	@NotBlank
 	private String address;
-=======
-	private String inceptionDate;
->>>>>>> fc1241b2c28c5a07ea4d54c0b7d6049c357e86a3
 	@NotBlank
 	private String phoneNumber;
 	@NotBlank
@@ -36,37 +33,36 @@ public class Company {
 	@NotBlank
 	private String inceptionDate;
 	@NotBlank
+	private String pincode;
+	@NotBlank
+	private String doorNo;
+	@NotBlank
+	private String city;
+	@NotBlank
+	private String state;
+	@NotBlank
 	private String owner;
 
-	// one-to-one mapping with GST entity class
+	//one-to-one mapping with GST entity class
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "gst_id", referencedColumnName = "id")
 	private GST gst;
 
-	// one-to-one mapping with Bank entity class
+	//one-to-one mapping with Bank entity class
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "bank_id", referencedColumnName = "id")
 	private Bank bank;
 
-	// one-to-one mapping with IncomeTax entity class
+	//one-to-one mapping with IncomeTax entity class
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "incomeTax_id", referencedColumnName = "id")
 	private IncomeTax incomeTax;
 
-<<<<<<< HEAD
 
 	//one-to-one mapping with EPF entity class
-=======
-	// one-to-one mapping with EPF entity class
->>>>>>> fc1241b2c28c5a07ea4d54c0b7d6049c357e86a3
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "epf_id", referencedColumnName = "id")
 	private EPF epf;
-	
-	// one-to-one mapping with Director entity class
-		@OneToOne(cascade = CascadeType.ALL)
-		@JoinColumn(name = "director_id", referencedColumnName = "id")
-		private Director director;
 
 	public Long getCompanyid() {
 		return companyid;
@@ -76,7 +72,6 @@ public class Company {
 		this.companyid = companyid;
 	}
 
-<<<<<<< HEAD
 	public String getCompanyname() {
 		return companyname;
 	}
@@ -98,53 +93,12 @@ public class Company {
 
 	public String getPhoneNumber() {
 		return phoneNumber;
-=======
-	public String getOrganizationCode() {
-		return organizationCode;
-	}
-
-	public void setOrganizationCode(String organizationCode) {
-		this.organizationCode = organizationCode;
-	}
-
-	public String getCompanyname() {
-		return companyname;
-	}
-
-	public void setCompanyname(String companyname) {
-		this.companyname = companyname;
-	}
-
-	
-
-	public String getInceptionDate() {
-		return inceptionDate;
-	}
-
-	public void setInceptionDate(String inceptionDate) {
-		this.inceptionDate = inceptionDate;
->>>>>>> fc1241b2c28c5a07ea4d54c0b7d6049c357e86a3
 	}
 
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 
-<<<<<<< HEAD
-=======
-	public void setRegisterNo(String registerNo) {
-		this.registerNo = registerNo;
-	}
-
-	public Long getPhoneNo() {
-		return phoneNo;
-	}
-
-	public void setPhoneNo(Long phoneNo) {
-		this.phoneNo = phoneNo;
-	}
-
->>>>>>> fc1241b2c28c5a07ea4d54c0b7d6049c357e86a3
 	public String getEmail() {
 		return email;
 	}
@@ -161,7 +115,6 @@ public class Company {
 		this.website = website;
 	}
 
-<<<<<<< HEAD
 	public String getRegisterNumber() {
 		return registerNumber;
 	}
@@ -180,7 +133,23 @@ public class Company {
 
 	public String getOwner() {
 		return owner;
-=======
+	}
+
+	public void setOwner(String owner) {
+		this.owner = owner;
+	}
+
+	public void setCompanyname(String companyname) {
+		this.companyname = companyname;
+	}
+	public String getPincode() {
+		return pincode;
+	}
+
+	public void setPincode(String pincode) {
+		this.pincode = pincode;
+	}
+
 	public String getDoorNo() {
 		return doorNo;
 	}
@@ -196,18 +165,20 @@ public class Company {
 	public void setCity(String city) {
 		this.city = city;
 	}
+	public String getDirector() {
+		return director;
+	}
+
+	public void setDirector(String director) {
+		this.director = director;
+	}
 
 	public String getState() {
 		return state;
->>>>>>> fc1241b2c28c5a07ea4d54c0b7d6049c357e86a3
 	}
 
-	public void setOwner(String owner) {
-		this.owner = owner;
-	}
-
-	public void setCompanyname(String companyname) {
-		this.companyname = companyname;
+	public void setState(String state) {
+		this.state = state;
 	}
 
 	public GST getGst() {
@@ -242,14 +213,5 @@ public class Company {
 		this.epf = epf;
 	}
 
-	public Director getDirector() {
-		return director;
-	}
-
-	public void setDirector(Director director) {
-		this.director = director;
-	}
-	
-	
 
 }
