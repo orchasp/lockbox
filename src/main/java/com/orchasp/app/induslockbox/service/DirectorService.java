@@ -41,11 +41,11 @@ public class DirectorService {
                 Company existingCompany = existingDirector.getCompany();
                 if (existingCompany != null) {
                     // Update existing company fields
-                    existingCompany.setOrganizationCode(updatedCompany.getOrganizationCode());
+                    existingCompany.setCompanycode(updatedCompany.getCompanycode());
                     existingCompany.setCompanyname(updatedCompany.getCompanyname());
                     existingCompany.setInceptionDate(updatedCompany.getInceptionDate());
-                    existingCompany.setRegisterNo(updatedCompany.getRegisterNo());
-                    existingCompany.setPhoneNo(updatedCompany.getPhoneNo());
+                    existingCompany.setRegisterNumber(updatedCompany.getRegisterNumber());
+                    existingCompany.setPhoneNumber(updatedCompany.getPhoneNumber());
                     existingCompany.setEmail(updatedCompany.getEmail());
                     existingCompany.setFlatNo(updatedCompany.getFlatNo());
                     existingCompany.setWebsite(updatedCompany.getWebsite());

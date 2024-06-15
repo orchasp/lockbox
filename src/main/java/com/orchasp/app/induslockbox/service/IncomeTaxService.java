@@ -43,11 +43,11 @@ public class IncomeTaxService {
             if (updatedCompany != null) {
                 Company existingCompany = existingIncomeTax.getCompany();
                 if (existingCompany != null) {
-                    existingCompany.setOrganizationCode(updatedCompany.getOrganizationCode());
+                    existingCompany.setCompanycode(updatedCompany.getCompanycode());
                     existingCompany.setCompanyname(updatedCompany.getCompanyname());
                     existingCompany.setInceptionDate(updatedCompany.getInceptionDate());
-                    existingCompany.setRegisterNo(updatedCompany.getRegisterNo());
-                    existingCompany.setPhoneNo(updatedCompany.getPhoneNo());
+                    existingCompany.setRegisterNumber(updatedCompany.getRegisterNumber());
+                    existingCompany.setPhoneNumber(updatedCompany.getPhoneNumber());
                     existingCompany.setEmail(updatedCompany.getEmail());
                     existingCompany.setFlatNo(updatedCompany.getFlatNo());
                     existingCompany.setWebsite(updatedCompany.getWebsite());

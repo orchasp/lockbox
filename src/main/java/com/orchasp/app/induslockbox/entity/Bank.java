@@ -1,28 +1,20 @@
 package com.orchasp.app.induslockbox.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.Size;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
+
 
 @Entity
 public class Bank {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	private String accountHolderName;
-	private String bankAccountNumber;
-	private String ifccode;
-	private String bankName;
-	private String branch;
-	private long irccode;
-	private long mrccode;
-	private long rbicode;
-	private long transactionCode;
-	private String accountType;
-	private String password;
+	private Long id; 
 	
 	 @OneToOne
 	    @JoinColumn(name="company_id")
@@ -35,12 +27,12 @@ public class Bank {
 		this.id = id;
 		this.accountHolderName = accountHolderName;
 		this.bankAccountNumber = bankAccountNumber;
-		this.ifccode = ifccode;
+		this.IFCcode = ifccode;
 		this.bankName = bankName;
 		this.branch = branch;
-		this.irccode = irccode;
-		this.mrccode = mrccode;
-		this.rbicode = rbicode;
+		this.IRCcode = irccode;
+		this.MRCcode = mrccode;
+		this.IRCcode = rbicode;
 		this.transactionCode = transactionCode;
 		this.accountType = accountType;
 		this.password = password;
@@ -50,6 +42,39 @@ public class Bank {
 	public Bank() {
 		super();
 	}
+
+	@Size(max=50)
+    @Column(length = 50)
+	private String accountHolderName;
+
+
+    @Column(length = 20)
+    private String bankAccountNumber;
+
+    @Column(length = 11)
+    private String IFCcode;
+
+    @Column(length = 50)
+    private String bankName;
+
+    @Column(length = 50)
+    private String branch;
+
+    @Column(length = 20)
+    private Long IRCcode;
+
+    @Column(length = 20)
+    private Long MRCcode;
+
+    @Column(length = 20)
+    private Long transactionCode;
+
+    @Column(length = 10)
+    private String accountType;
+
+    @Column(length = 255)
+    private String password;
+
 
 	public Long getId() {
 		return id;
@@ -76,11 +101,11 @@ public class Bank {
 	}
 
 	public String getIfccode() {
-		return ifccode;
+		return IFCcode;
 	}
 
 	public void setIfccode(String ifccode) {
-		this.ifccode = ifccode;
+		this.IFCcode = ifccode;
 	}
 
 	public String getBankName() {
@@ -100,27 +125,27 @@ public class Bank {
 	}
 
 	public long getIrccode() {
-		return irccode;
+		return IRCcode;
 	}
 
 	public void setIrccode(long irccode) {
-		this.irccode = irccode;
+		this.IRCcode = irccode;
 	}
 
 	public long getMrccode() {
-		return mrccode;
+		return MRCcode;
 	}
 
 	public void setMrccode(long mrccode) {
-		this.mrccode = mrccode;
+		this.MRCcode = mrccode;
 	}
 
 	public long getRbicode() {
-		return rbicode;
+		return getRbicode();
 	}
 
 	public void setRbicode(long rbicode) {
-		this.rbicode = rbicode;
+		this.IRCcode = rbicode;
 	}
 
 	public long getTransactionCode() {
@@ -154,7 +179,4 @@ public class Bank {
 	public void setCompany(Company company) {
 		this.company = company;
 	}
-	 
-	
-
 }
