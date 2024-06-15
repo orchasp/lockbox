@@ -17,38 +17,38 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.orchasp.app.induslockbox.entity.GST;
-import com.orchasp.app.induslockbox.service.GSTService;
+import com.orchasp.app.induslockbox.entity.ESI;
+import com.orchasp.app.induslockbox.service.ESIService;
 
 @RestController
-@RequestMapping("/api/gst")
-public class GSTController {
+@RequestMapping("/api/ESI")
+public class ESIController {
 
     @Autowired
-    private GSTService GSTService;
+    private ESIService ESIService;
 
     @GetMapping("/fetchall")
-    public List<GST> getAllBanks() {
-        return GSTService.findAll();
+    public List<ESI> getAllBanks() {
+        return ESIService.findAll();
     }
 
     @GetMapping("/fetchbyid/{id}")
-    public ResponseEntity<GST> getGSTById(@PathVariable Long id) {
-        Optional<GST> GST = GSTService.findById(id);
-        return GST.map(ResponseEntity::ok)
+    public ResponseEntity<ESI> getESIById(@PathVariable Long id) {
+        Optional<ESI> ESI = ESIService.findById(id);
+        return ESI.map(ResponseEntity::ok)
                    .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @PostMapping("/save")//http://localhost:8080/api/gst/save
-    public GST createBank(@RequestBody GST GST,@RequestParam String createdBy) {
-        return GSTService.save(GST,createdBy);
+    @PostMapping("/save")//http://localhost:8080/api/ESIs
+    public ESI createBank(@RequestBody ESI ESI,@RequestParam String createdBy) {
+        return ESIService.save(ESI,createdBy);
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<GST> updateGST(@PathVariable Long id, @RequestBody GST gstDetails,@RequestParam String updatedBy) {
+    public ResponseEntity<ESI> updateESI(@PathVariable Long id, @RequestBody ESI ESIDetails,@RequestParam String updatedBy) {
         try {
-            GST updatedGST = GSTService.updateGST(id, gstDetails,updatedBy);
-            return ResponseEntity.ok(updatedGST);
+            ESI updatedESI = ESIService.updateESI(id, ESIDetails,updatedBy);
+            return ResponseEntity.ok(updatedESI);
         } catch (RuntimeException e) {
             return ResponseEntity.notFound().build();
         }
@@ -56,18 +56,18 @@ public class GSTController {
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deleteBank(@PathVariable Long id) {
-    	GSTService.deleteById(id);
+    	ESIService.deleteById(id);
         return ResponseEntity.ok().build();
     }
     @PatchMapping("/activate/{id}")
-    public void activateGST(@PathVariable Long id) {
-        GSTService.activateById(id);
+    public void activateESI(@PathVariable Long id) {
+        ESIService.activateById(id);
     }
     
-    @GetMapping("/company/{company_id}")//http://localhost:8080/api/gst/company/1
-    public ResponseEntity<List<GST>> getGSTByCompanyId(@PathVariable Long company_id) {
-        List<GST> GSTDetails = GSTService.findByCompany_id(company_id);
-        return ResponseEntity.ok(GSTDetails);
+    @GetMapping("/company/{company_id}")//http://localhost:8080/api/ESI/company/1
+    public ResponseEntity<List<ESI>> getESIByCompanyId(@PathVariable Long company_id) {
+        List<ESI> ESIDetails = ESIService.findByCompany_id(company_id);
+        return ResponseEntity.ok(ESIDetails);
     }
 
 }

@@ -8,53 +8,51 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
-public class KMP {
-
+public class ESI {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+
 	private Long id;
 	@NotNull
-	private String name;
+	private Long employeeCode;
 	@NotNull
-	private String email;
+	private String employeeName;
 	@NotNull
-	@Email
-	private String userid;
+	private String ro;
 	@NotNull
-	private String password;
-	
+	private Long lin;
+
 	private String createdBy;
 	private String updatedBy;
 	private LocalDateTime createdDate;
 	private LocalDateTime updatedDate;
 	private boolean active = true;
 	
-	@OneToOne
-	@JoinColumn(name = "company_id")
-	private Company company;
+	 @OneToOne
+	    @JoinColumn(name="company_id")
+	    private Company company;
 
-	public KMP() {
+
+	public ESI() {
 		super();
 	}
 
-	public KMP(Long id, String name, String email, String userid, String password, String createdBy, String updatedBy,
-			LocalDateTime createdDate, LocalDateTime updatedDate, boolean active, Company company) {
+	public ESI(Long id, @NotNull Long employeeCode, @NotNull String employeeName, @NotNull String ro, @NotNull Long lin,
+			String createdBy, String updatedBy, LocalDateTime createdDate, LocalDateTime updatedDate, boolean active) {
 		super();
 		this.id = id;
-		this.name = name;
-		this.email = email;
-		this.userid = userid;
-		this.password = password;
+		this.employeeCode = employeeCode;
+		this.employeeName = employeeName;
+		this.ro = ro;
+		this.lin = lin;
 		this.createdBy = createdBy;
 		this.updatedBy = updatedBy;
 		this.createdDate = createdDate;
 		this.updatedDate = updatedDate;
 		this.active = active;
-		this.company = company;
 	}
 
 	public Long getId() {
@@ -65,36 +63,36 @@ public class KMP {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public Long getEmployeeCode() {
+		return employeeCode;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setEmployeeCode(Long employeeCode) {
+		this.employeeCode = employeeCode;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getEmployeeName() {
+		return employeeName;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setEmployeeName(String employeeName) {
+		this.employeeName = employeeName;
 	}
 
-	public String getUserid() {
-		return userid;
+	public String getRo() {
+		return ro;
 	}
 
-	public void setUserid(String userid) {
-		this.userid = userid;
+	public void setRo(String ro) {
+		this.ro = ro;
 	}
 
-	public String getPassword() {
-		return password;
+	public Long getLin() {
+		return lin;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setLin(Long lin) {
+		this.lin = lin;
 	}
 
 	public String getCreatedBy() {
@@ -145,4 +143,5 @@ public class KMP {
 		this.company = company;
 	}
 
+	
 }

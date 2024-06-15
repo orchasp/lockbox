@@ -1,5 +1,6 @@
 package com.orchasp.app.induslockbox.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,7 +26,7 @@ public class DirectorService {
     public Optional<Director> findById(Long id) {
         return directorRepository.findById(id);
     }
-    public Director updateDirector(Long id, Director updatedDirector) {
+    public Director updateDirector(Long id, Director updatedDirector,String updatedBy) {
         Optional<Director> existingDirectorOpt = directorRepository.findById(id);
         if (existingDirectorOpt.isPresent()) {
             Director existingDirector = existingDirectorOpt.get();
@@ -34,24 +35,34 @@ public class DirectorService {
             existingDirector.setName(updatedDirector.getName());
             existingDirector.setEmail(updatedDirector.getEmail());
             existingDirector.setDinNo(updatedDirector.getDinNo());
-
+            existingDirector.setActive(updatedDirector.isActive());
+            existingDirector.setCreatedBy(updatedDirector.getCreatedBy());
+            existingDirector.setCreatedDate(updatedDirector.getCreatedDate());
+            existingDirector.setUpdatedBy(updatedBy);
+            existingDirector.setUpdatedDate(LocalDateTime.now());
+            
             // Update or save company
             Company updatedCompany = updatedDirector.getCompany();
             if (updatedCompany != null) {
                 Company existingCompany = existingDirector.getCompany();
                 if (existingCompany != null) {
                     // Update existing company fields
-                    existingCompany.setCompanycode(updatedCompany.getCompanycode());
+                    existingCompany.setOrganizationCode(updatedCompany.getOrganizationCode());
                     existingCompany.setCompanyname(updatedCompany.getCompanyname());
                     existingCompany.setInceptionDate(updatedCompany.getInceptionDate());
-                    existingCompany.setRegisterNumber(updatedCompany.getRegisterNumber());
-                    existingCompany.setPhoneNumber(updatedCompany.getPhoneNumber());
+                    existingCompany.setRegisterNo(updatedCompany.getRegisterNo());
+                    existingCompany.setPhoneNo(updatedCompany.getPhoneNo());
                     existingCompany.setEmail(updatedCompany.getEmail());
                     existingCompany.setFlatNo(updatedCompany.getFlatNo());
                     existingCompany.setWebsite(updatedCompany.getWebsite());
                     existingCompany.setCity(updatedCompany.getCity());
                     existingCompany.setState(updatedCompany.getState());
                     existingCompany.setPincode(updatedCompany.getPincode());
+                    existingCompany.setActive(updatedCompany.isActive());
+                    existingCompany.setCreatedBy(updatedCompany.getCreatedBy());
+                    existingCompany.setCreatedDate(updatedCompany.getCreatedDate());
+                    existingCompany.setUpdatedBy(updatedBy);
+                    existingCompany.setUpdatedDate(LocalDateTime.now());
                     
                     // Save the updated existing company
                     companyRepository.save(existingCompany);
@@ -70,11 +81,41 @@ public class DirectorService {
     }
 
 
-    public Director save(Director Director) {
+    public Director save(Director Director,String createdBy) {
+    	
+    	Long companyId = Director.getCompany().getCompanyid();
+        Optional<Director> dop= directorRepository.findById(companyId);
+        Director d=dop.get();
+        Director.setCompany(d.getCompany());
+        
+    	Director.setCreatedBy(createdBy);
+    	Director.setUpdatedBy(createdBy);
+    	Director.setActive(true);
+    	Director.setCreatedDate(LocalDateTime.now());
+    	Director.setUpdatedDate(LocalDateTime.now());
         return directorRepository.save(Director);
     }
+    
+    public List<Director> findByCompany_id(Long company_id) {
+		return directorRepository.findByCompany_id(company_id);
+	}
 
     public void deleteById(Long id) {
-    	directorRepository.deleteById(id);
+    	Optional<Director> d =directorRepository.findById(id);
+    	if(d.isPresent()) {
+    		Director director=d.get();
+    		director.setActive(false);
+    		directorRepository.save(director);
+    	}
+    	//directorRepository.deleteById(id);
     }
+    
+    public void activateById(Long id) {
+		Optional<Director> DirectorOpt =directorRepository.findById(id);
+		if (DirectorOpt.isPresent()) {
+			Director director = DirectorOpt.get();
+			director.setActive(true);
+			directorRepository.save(director);
+		}
+	}
 }
