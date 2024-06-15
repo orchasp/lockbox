@@ -1,80 +1,80 @@
 package com.orchasp.app.induslockbox.entity;
 
-import jakarta.persistence.Column;
+import java.time.LocalDateTime;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.validation.constraints.Size;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
-
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Bank {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id; 
-	
-	 @OneToOne
-	    @JoinColumn(name="company_id")
-	    private Company company;
+	private Long id;
+	@NotNull
+	private String accountHolderName;
+	@NotNull
+	private String bankAccountNumber;
+	@NotNull
+	private String ifccode;
+	@NotNull
+	private String bankName;
+	@NotNull
+	private String branch;
+	@NotNull
+	private long irccode;
+	@NotNull
+	private long mrccode;
+	@NotNull
+	private long rbicode;
+	@NotNull
+	private long transactionCode;
+	@NotNull
+	private String accountType;
+	@NotNull
+	private String password;
 
-	public Bank(Long id, String accountHolderName, String bankAccountNumber, String ifccode, String bankName,
-			String branch, long irccode, long mrccode, long rbicode, long transactionCode, String accountType,
-			String password, Company company) {
-		super();
-		this.id = id;
-		this.accountHolderName = accountHolderName;
-		this.bankAccountNumber = bankAccountNumber;
-		this.IFCcode = ifccode;
-		this.bankName = bankName;
-		this.branch = branch;
-		this.IRCcode = irccode;
-		this.MRCcode = mrccode;
-		this.IRCcode = rbicode;
-		this.transactionCode = transactionCode;
-		this.accountType = accountType;
-		this.password = password;
-		this.company = company;
-	}
+	private String createdBy;
+	private String updatedBy;
+	private LocalDateTime createdDate;
+	private LocalDateTime updatedDate;
+	 private boolean active = true;
+
+	@OneToOne
+	@JoinColumn(name = "company_id")
+	private Company company;
 
 	public Bank() {
 		super();
 	}
 
-	@Size(max=50)
-    @Column(length = 50)
-	private String accountHolderName;
-
-
-    @Column(length = 20)
-    private String bankAccountNumber;
-
-    @Column(length = 11)
-    private String IFCcode;
-
-    @Column(length = 50)
-    private String bankName;
-
-    @Column(length = 50)
-    private String branch;
-
-    @Column(length = 20)
-    private Long IRCcode;
-
-    @Column(length = 20)
-    private Long MRCcode;
-
-    @Column(length = 20)
-    private Long transactionCode;
-
-    @Column(length = 10)
-    private String accountType;
-
-    @Column(length = 255)
-    private String password;
-
+	public Bank(Long id, String accountHolderName, String bankAccountNumber, String ifccode, String bankName,
+			String branch, long irccode, long mrccode, long rbicode, long transactionCode, String accountType,
+			String password, String createdBy, String updatedBy, LocalDateTime createdDate, LocalDateTime updatedDate,
+			Company company) {
+		super();
+		this.id = id;
+		this.accountHolderName = accountHolderName;
+		this.bankAccountNumber = bankAccountNumber;
+		this.ifccode = ifccode;
+		this.bankName = bankName;
+		this.branch = branch;
+		this.irccode = irccode;
+		this.mrccode = mrccode;
+		this.rbicode = rbicode;
+		this.transactionCode = transactionCode;
+		this.accountType = accountType;
+		this.password = password;
+		this.createdBy = createdBy;
+		this.updatedBy = updatedBy;
+		this.createdDate = createdDate;
+		this.updatedDate = updatedDate;
+		this.company = company;
+	}
 
 	public Long getId() {
 		return id;
@@ -101,11 +101,11 @@ public class Bank {
 	}
 
 	public String getIfccode() {
-		return IFCcode;
+		return ifccode;
 	}
 
 	public void setIfccode(String ifccode) {
-		this.IFCcode = ifccode;
+		this.ifccode = ifccode;
 	}
 
 	public String getBankName() {
@@ -125,27 +125,27 @@ public class Bank {
 	}
 
 	public long getIrccode() {
-		return IRCcode;
+		return irccode;
 	}
 
 	public void setIrccode(long irccode) {
-		this.IRCcode = irccode;
+		this.irccode = irccode;
 	}
 
 	public long getMrccode() {
-		return MRCcode;
+		return mrccode;
 	}
 
 	public void setMrccode(long mrccode) {
-		this.MRCcode = mrccode;
+		this.mrccode = mrccode;
 	}
 
 	public long getRbicode() {
-		return getRbicode();
+		return rbicode;
 	}
 
 	public void setRbicode(long rbicode) {
-		this.IRCcode = rbicode;
+		this.rbicode = rbicode;
 	}
 
 	public long getTransactionCode() {
@@ -172,6 +172,38 @@ public class Bank {
 		this.password = password;
 	}
 
+	public String getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
+
+	public String getUpdatedBy() {
+		return updatedBy;
+	}
+
+	public void setUpdatedBy(String updatedBy) {
+		this.updatedBy = updatedBy;
+	}
+
+	public LocalDateTime getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(LocalDateTime createdDate) {
+		this.createdDate = createdDate;
+	}
+
+	public LocalDateTime getUpdatedDate() {
+		return updatedDate;
+	}
+
+	public void setUpdatedDate(LocalDateTime updatedDate) {
+		this.updatedDate = updatedDate;
+	}
+
 	public Company getCompany() {
 		return company;
 	}
@@ -179,4 +211,13 @@ public class Bank {
 	public void setCompany(Company company) {
 		this.company = company;
 	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
 }

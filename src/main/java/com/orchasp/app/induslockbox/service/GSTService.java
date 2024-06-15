@@ -1,5 +1,6 @@
 package com.orchasp.app.induslockbox.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,7 +28,7 @@ public class GSTService {
         return GSTRepository.findById(id);
     }
     
-    public GST updateGST(Long id, GST updatedGST) {
+    public GST updateGST(Long id, GST updatedGST,String updatedBy) {
         Optional<GST> existingGSTOpt = GSTRepository.findById(id);
         if (existingGSTOpt.isPresent()) {
             GST existingGST = existingGSTOpt.get();
@@ -37,23 +38,35 @@ public class GSTService {
             existingGST.setGstNumber(updatedGST.getGstNumber());
             existingGST.setUserid(updatedGST.getUserid());
             existingGST.setPassword(updatedGST.getPassword());
+            
+            existingGST.setActive(updatedGST.isActive());
+            existingGST.setCreatedBy(updatedGST.getCreatedBy());
+            existingGST.setCreatedDate(updatedGST.getCreatedDate());
+            existingGST.setUpdatedBy(updatedBy);
+            existingGST.setUpdatedDate(LocalDateTime.now());
 
             // Update or save company
             Company updatedCompany = updatedGST.getCompany();
             if (updatedCompany != null) {
                 Company existingCompany = existingGST.getCompany();
                 if (existingCompany != null) {
-                    existingCompany.setCompanycode(updatedCompany.getCompanycode());
+                    existingCompany.setOrganizationCode(updatedCompany.getOrganizationCode());
                     existingCompany.setCompanyname(updatedCompany.getCompanyname());
                     existingCompany.setInceptionDate(updatedCompany.getInceptionDate());
-                    existingCompany.setRegisterNumber(updatedCompany.getRegisterNumber());
-                    existingCompany.setPhoneNumber(updatedCompany.getPhoneNumber());
+                    existingCompany.setRegisterNo(updatedCompany.getRegisterNo());
+                    existingCompany.setPhoneNo(updatedCompany.getPhoneNo());
                     existingCompany.setEmail(updatedCompany.getEmail());
                     existingCompany.setFlatNo(updatedCompany.getFlatNo());
                     existingCompany.setWebsite(updatedCompany.getWebsite());
                     existingCompany.setCity(updatedCompany.getCity());
                     existingCompany.setState(updatedCompany.getState());
                     existingCompany.setPincode(updatedCompany.getPincode());
+                    
+                    existingCompany.setCreatedBy(updatedCompany.getCreatedBy());
+                    existingCompany.setCreatedDate(updatedCompany.getCreatedDate());
+                    existingCompany.setUpdatedBy(updatedBy);
+                    existingCompany.setUpdatedDate(LocalDateTime.now());
+                    existingCompany.setActive(updatedCompany.isActive());
                     companyRepository.save(existingCompany);
                 } else {
                     companyRepository.save(updatedCompany);
@@ -67,11 +80,41 @@ public class GSTService {
         }
     }
 
-    public GST save(GST GST) {
+    public GST save(GST GST,String createdBy) {
+    	
+    	Long companyId = GST.getCompany().getCompanyid();
+        Optional<GST> gstop= GSTRepository.findById(companyId);
+        GST g=gstop.get();
+        GST.setCompany(g.getCompany());
+    	
+    	GST.setActive(true);
+    	GST.setCreatedBy(createdBy);
+    	GST.setCreatedDate(LocalDateTime.now());
+    	GST.setUpdatedBy(createdBy);
+    	GST.setUpdatedDate(LocalDateTime.now());
         return GSTRepository.save(GST);
     }
 
     public void deleteById(Long id) {
-    	GSTRepository.deleteById(id);
+    	Optional<GST> gstop=GSTRepository.findById(id);
+    	if(gstop.isPresent()) {
+    		GST gst=gstop.get();
+    		gst.setActive(false);
+    		GSTRepository.save(gst);
+    	}
+    	//GSTRepository.deleteById(id);
     }
+    
+    public void activateById(Long id) {
+		Optional<GST>GSTOpt = GSTRepository.findById(id);
+		if (GSTOpt.isPresent()) {
+			GST gst = GSTOpt.get();
+			gst.setActive(true);
+			GSTRepository.save(gst);
+		}
+	}
+    public List<GST> findByCompany_id(Long company_id) {
+		return GSTRepository.findByCompany_id(company_id);
+	}
+
 }

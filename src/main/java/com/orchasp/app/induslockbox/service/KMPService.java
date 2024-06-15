@@ -1,5 +1,6 @@
 package com.orchasp.app.induslockbox.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,63 +15,104 @@ import com.orchasp.app.induslockbox.repository.KMPRepository;
 @Service
 public class KMPService {
 
-    @Autowired
-    private KMPRepository kmpRepository; // Changed to lowercase 'k'
+	@Autowired
+	private KMPRepository KMPRepository;
 
-    @Autowired
-    private CompanyRepository companyRepository;
+	@Autowired
+	private CompanyRepository companyRepository;
 
-    public List<KMP> findAll() {
-        return kmpRepository.findAll();
-    }
+	public List<KMP> findAll() {
+		return KMPRepository.findAll();
+	}
 
-    public Optional<KMP> findById(Long id) {
-        return kmpRepository.findById(id);
-    }
+	public List<KMP> findByCompany_id(Long company_id) {
+		return KMPRepository.findByCompany_id(company_id);
+	}
 
-    public KMP updateKMP(Long id, KMP updatedKMP) {
-        Optional<KMP> existingKMPOpt = kmpRepository.findById(id);
-        if (existingKMPOpt.isPresent()) {
-            KMP existingKmp = existingKMPOpt.get();
+	public Optional<KMP> findById(Long id) {
+		return KMPRepository.findById(id);
+	}
 
-            // Update basic fields
-            existingKmp.setUserid(updatedKMP.getUserid());
-            existingKmp.setName(updatedKMP.getName());
-            existingKmp.setPassword(updatedKMP.getPassword());
+	public KMP updateKMP(Long id, KMP updatedKMP, String updatedBy) {
+		Optional<KMP> existingKMPOpt = KMPRepository.findById(id);
+		if (existingKMPOpt.isPresent()) {
+			KMP existingKMP = existingKMPOpt.get();
 
-            // Update or save company
-            Company updatedCompany = updatedKMP.getCompany();
-            if (updatedCompany != null) {
-                Company existingCompany = existingKmp.getCompany();
-                if (existingCompany != null) {
-                    existingCompany.setCompanycode(updatedCompany.getCompanycode());
-                    existingCompany.setCompanyname(updatedCompany.getCompanyname());
-                    existingCompany.setInceptionDate(updatedCompany.getInceptionDate());
-                    existingCompany.setRegisterNumber(updatedCompany.getRegisterNumber());
-                    existingCompany.setPhoneNumber(updatedCompany.getPhoneNumber());
-                    existingCompany.setEmail(updatedCompany.getEmail());
-                    existingCompany.setFlatNo(updatedCompany.getFlatNo());
-                    existingCompany.setWebsite(updatedCompany.getWebsite());
-                    existingCompany.setCity(updatedCompany.getCity());
-                    existingCompany.setState(updatedCompany.getState());
-                    existingCompany.setPincode(updatedCompany.getPincode());
-                    companyRepository.save(existingCompany);
-                } else {
-                    existingKmp.setCompany(companyRepository.save(updatedCompany));
-                }
-            }
+			// Update basic fields
+			existingKMP.setEmail(updatedKMP.getEmail());
+			existingKMP.setName(updatedKMP.getName());
+			existingKMP.setUserid(updatedKMP.getUserid());
+			existingKMP.setPassword(updatedKMP.getPassword());
 
-            return kmpRepository.save(existingKmp);
-        } else {
-            throw new RuntimeException("KMP not found with id " + id); // More specific message
-        }
-    }
+			existingKMP.setCreatedBy(updatedKMP.getCreatedBy());
+			existingKMP.setCreatedDate(updatedKMP.getCreatedDate());
+			existingKMP.setUpdatedBy(updatedBy);
+			existingKMP.setUpdatedDate(LocalDateTime.now());
+			existingKMP.setActive(updatedKMP.isActive());
+			// Update or save company
+			Company updatedCompany = updatedKMP.getCompany();
+			if (updatedCompany != null) {
+				Company existingCompany = existingKMP.getCompany();
+				if (existingCompany != null) {
+					existingCompany.setOrganizationCode(updatedCompany.getOrganizationCode());
+					existingCompany.setCompanyname(updatedCompany.getCompanyname());
+					existingCompany.setInceptionDate(updatedCompany.getInceptionDate());
+					existingCompany.setRegisterNo(updatedCompany.getRegisterNo());
+					existingCompany.setPhoneNo(updatedCompany.getPhoneNo());
+					existingCompany.setEmail(updatedCompany.getEmail());
+					existingCompany.setFlatNo(updatedCompany.getFlatNo());
+					existingCompany.setWebsite(updatedCompany.getWebsite());
+					existingCompany.setCity(updatedCompany.getCity());
+					existingCompany.setState(updatedCompany.getState());
+					existingCompany.setPincode(updatedCompany.getPincode());
+					existingCompany.setActive(updatedCompany.isActive());
+					existingCompany.setCreatedBy(updatedCompany.getCreatedBy());
+					existingCompany.setCreatedDate(updatedCompany.getCreatedDate());
+					existingCompany.setUpdatedBy(updatedBy);
+					existingCompany.setUpdatedDate(LocalDateTime.now());
+					companyRepository.save(existingCompany);
+				} else {
+					companyRepository.save(updatedCompany);
+					existingKMP.setCompany(updatedCompany);
+				}
+			}
 
-    public KMP save(KMP kmp) {
-        return kmpRepository.save(kmp);
-    }
+			return KMPRepository.save(existingKMP);
+		} else {
+			throw new RuntimeException("KMP not found with id " + id);
+		}
+	}
 
-    public void deleteById(Long id) {
-        kmpRepository.deleteById(id);
-    }
+	public KMP save(KMP KMP, String user) {
+		
+		Long companyId = KMP.getCompany().getCompanyid();
+        Optional<KMP> kmpop= KMPRepository.findById(companyId);
+        KMP k=kmpop.get();
+        KMP.setCompany(k.getCompany());
+
+		KMP.setCreatedBy(user);
+		KMP.setCreatedDate(LocalDateTime.now());
+		KMP.setUpdatedBy(user);
+		KMP.setUpdatedDate(LocalDateTime.now());
+		return KMPRepository.save(KMP);
+	}
+
+	public void deleteById(Long id) {
+		Optional<KMP> KMPOpt = KMPRepository.findById(id);
+		if (KMPOpt.isPresent()) {
+			KMP b = KMPOpt.get();
+			b.setActive(false);
+			KMPRepository.save(b);
+		}
+//        KMPRepository.deleteById(id);
+	}
+
+	public void activateById(Long id) {
+		Optional<KMP> KMPOpt = KMPRepository.findById(id);
+		if (KMPOpt.isPresent()) {
+			KMP KMP = KMPOpt.get();
+			KMP.setActive(true);
+			KMPRepository.save(KMP);
+		}
+	}
 }
