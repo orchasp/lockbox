@@ -1,7 +1,7 @@
 package com.orchasp.app.induslockbox.entity;
 
 public enum Role {
-	USER,
+	ROLE_USER,
 	
-	ADMIN
+	ROLE_ADMIN
 }
