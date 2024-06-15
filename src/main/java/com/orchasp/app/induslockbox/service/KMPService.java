@@ -15,20 +15,21 @@ import com.orchasp.app.induslockbox.repository.KMPRepository;
 public class KMPService {
 
     @Autowired
-    private KMPRepository KMPRepository;
+    private KMPRepository kmpRepository; // Changed to lowercase 'k'
+
     @Autowired
     private CompanyRepository companyRepository;
 
     public List<KMP> findAll() {
-        return KMPRepository.findAll();
+        return kmpRepository.findAll();
     }
 
     public Optional<KMP> findById(Long id) {
-        return KMPRepository.findById(id);
+        return kmpRepository.findById(id);
     }
-    
+
     public KMP updateKMP(Long id, KMP updatedKMP) {
-        Optional<KMP> existingKMPOpt = KMPRepository.findById(id);
+        Optional<KMP> existingKMPOpt = kmpRepository.findById(id);
         if (existingKMPOpt.isPresent()) {
             KMP existingKmp = existingKMPOpt.get();
 
@@ -36,18 +37,17 @@ public class KMPService {
             existingKmp.setUserid(updatedKMP.getUserid());
             existingKmp.setName(updatedKMP.getName());
             existingKmp.setPassword(updatedKMP.getPassword());
-           
 
             // Update or save company
             Company updatedCompany = updatedKMP.getCompany();
             if (updatedCompany != null) {
                 Company existingCompany = existingKmp.getCompany();
                 if (existingCompany != null) {
-                    existingCompany.setOrganizationCode(updatedCompany.getOrganizationCode());
+                    existingCompany.setCompanycode(updatedCompany.getCompanycode());
                     existingCompany.setCompanyname(updatedCompany.getCompanyname());
                     existingCompany.setInceptionDate(updatedCompany.getInceptionDate());
-                    existingCompany.setRegisterNo(updatedCompany.getRegisterNo());
-                    existingCompany.setPhoneNo(updatedCompany.getPhoneNo());
+                    existingCompany.setRegisterNumber(updatedCompany.getRegisterNumber());
+                    existingCompany.setPhoneNumber(updatedCompany.getPhoneNumber());
                     existingCompany.setEmail(updatedCompany.getEmail());
                     existingCompany.setFlatNo(updatedCompany.getFlatNo());
                     existingCompany.setWebsite(updatedCompany.getWebsite());
@@ -56,23 +56,21 @@ public class KMPService {
                     existingCompany.setPincode(updatedCompany.getPincode());
                     companyRepository.save(existingCompany);
                 } else {
-                    companyRepository.save(updatedCompany);
-                    existingKmp.setCompany(updatedCompany);
+                    existingKmp.setCompany(companyRepository.save(updatedCompany));
                 }
             }
 
-            return KMPRepository.save(existingKmp);
+            return kmpRepository.save(existingKmp);
         } else {
-            throw new RuntimeException("IncomeTax not found with id " + id);
+            throw new RuntimeException("KMP not found with id " + id); // More specific message
         }
     }
 
     public KMP save(KMP kmp) {
-        return KMPRepository.save(kmp);
+        return kmpRepository.save(kmp);
     }
 
     public void deleteById(Long id) {
-    	KMPRepository.deleteById(id);
+        kmpRepository.deleteById(id);
     }
 }
-

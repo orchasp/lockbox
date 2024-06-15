@@ -4,13 +4,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-<<<<<<< HEAD
-import jakarta.persistence.ManyToOne;
+
 import jakarta.validation.constraints.NotBlank;
-=======
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
->>>>>>> 2bab7318d52299c06ca93ea5080e89e923054a3d
+
 
 @Entity
 
@@ -20,29 +18,12 @@ public class Director {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	private String name;
-<<<<<<< HEAD
 	@NotBlank
 	private String address;
     @NotBlank
 	private Long dinNo;
-	
-	@ManyToOne
-	private Company company;
-	public Director() {
-		
-	}
-
-	public Company getCompany() {
-		return company;
-	}
-
-	public void setCompany(Company company) {
-		this.company = company;
-	}
-
-=======
 	private String email;
-	private Long dinNo;
+	
 	
 	 @OneToOne
 	    @JoinColumn(name="company_id")
@@ -60,8 +41,6 @@ public class Director {
 	public Director() {
 		super();
 	}
-
->>>>>>> 2bab7318d52299c06ca93ea5080e89e923054a3d
 	public Long getId() {
 		return id;
 	}
@@ -77,7 +56,7 @@ public class Director {
 	public void setName(String name) {
 		this.name = name;
 	}
-<<<<<<< HEAD
+
 	public String getAddress() {
 		return address;
 	}
@@ -93,11 +72,7 @@ public class Director {
 	public void setDinNo(Long dinNo) {
 		this.dinNo = dinNo;
 	}
-	
-	
 
-}
-=======
 
 	public String getEmail() {
 		return email;
@@ -107,13 +82,6 @@ public class Director {
 		this.email = email;
 	}
 
-	public Long getDinNo() {
-		return dinNo;
-	}
-
-	public void setDinNo(Long dinNo) {
-		this.dinNo = dinNo;
-	}
 
 	public Company getCompany() {
 		return company;
@@ -124,4 +92,4 @@ public class Director {
 	}
 	
 }
->>>>>>> 2bab7318d52299c06ca93ea5080e89e923054a3d
+

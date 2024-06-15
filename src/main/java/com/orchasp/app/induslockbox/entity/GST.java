@@ -5,36 +5,20 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-<<<<<<< HEAD
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotBlank;
-=======
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
->>>>>>> 2bab7318d52299c06ca93ea5080e89e923054a3d
+
 
 @Entity
 public class GST {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-<<<<<<< Updated upstream
 	private String gstNumber;
 	private String userid;
 	private String password;
-<<<<<<< HEAD
-	@ManyToOne
-	private Company company;
-
-	public Company getCompany() {
-		return company;
-	}
-
-	public void setCompany(Company company) {
-		this.company = company;
-	}
-
-=======
 	
 	 @OneToOne
 	    @JoinColumn(name="company_id")
@@ -52,21 +36,7 @@ public class GST {
 	public GST() {
 		super();
 	}
->>>>>>> 2bab7318d52299c06ca93ea5080e89e923054a3d
-=======
 	
-	 @Column(length = 50)
-	  private String GStname;
->>>>>>> Stashed changes
-
-	    @Column(length = 20)
-	    private String gstNumber;
-	    
-	    @Column(length = 30)
-	    private String userid;
-	    
-	    @Column(length = 255)
-	    private String password;
 	    
 	public Long getId() {
 		return id;

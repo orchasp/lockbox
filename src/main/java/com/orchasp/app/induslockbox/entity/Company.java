@@ -1,316 +1,286 @@
 package com.orchasp.app.induslockbox.entity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Company {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long companyid;
-<<<<<<< HEAD
-	@NotBlank
-	private String companyname;
-	@NotBlank
-	private String director;
-	@NotBlank
-	private String companycode;
-	@NotBlank
-	private String address;
-	@NotBlank
-	private String phoneNumber;
-	@NotBlank
-=======
-	@NotNull
-	private String organizationCode;
-	@NotNull
-	private String companyname;
-	
-	@NotNull
-	private String inceptionDate;
-	@NotNull
-	private String registerNo;
-	@NotNull
-	private Long phoneNo;
-	@NotNull
->>>>>>> 2bab7318d52299c06ca93ea5080e89e923054a3d
-	private String email;
-	@NotNull
-	private String flatNo;
-	@NotNull
-	private String website;
-<<<<<<< HEAD
-	@NotBlank
-	private String registerNumber;
-	@NotBlank
-	private String inceptionDate;
-	@NotBlank
-	private String pincode;
-	@NotBlank
-	private String doorNo;
-	@NotBlank
-=======
-	@NotNull
->>>>>>> 2bab7318d52299c06ca93ea5080e89e923054a3d
-	private String city;
-		@NotNull
-	private String state;
-<<<<<<< HEAD
-	@NotBlank
-	private String owner;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long companyid;
 
-	//one-to-one mapping with GST entity class
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "gst_id", referencedColumnName = "id")
-	private GST gst;
+    @NotBlank
+    private String companyname;
 
-	//one-to-one mapping with Bank entity class
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "bank_id", referencedColumnName = "id")
-	private Bank bank;
+    @NotBlank
+    private String companycode;
 
-	//one-to-one mapping with IncomeTax entity class
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "incomeTax_id", referencedColumnName = "id")
-	private IncomeTax incomeTax;
+    @NotBlank
+    private String address;
 
+    @NotBlank
+    private String phoneNumber;
 
-	//one-to-one mapping with EPF entity class
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "epf_id", referencedColumnName = "id")
-	private EPF epf;
-=======
-	@NotNull
-	private Long pincode;
+    @NotBlank
+    @NotNull
+    private String organizationCode;
 
-// @OneToOne mapping with GST entity class
-	 @OneToOne(mappedBy = "company")
-	private GST gst;
-	 
-// @OneToOne mapping with Bank entity class
-	 @OneToOne(mappedBy = "company")
-	private Bank bank;
-	 
-	 //@OneToOne mapping with IncomeTax entity class
-	 @OneToOne(mappedBy = "company")
-	private IncomeTax incomeTax;
+    @NotNull
+    private String inceptionDate;
 
-	 // @OneToOne mapping with EPF entity class
-	 @OneToOne(mappedBy = "company")
-	private EPF epf;
+    @NotNull
+    private String registerNo;
 
-	 // @OneToOne mapping with Director entity class
-	 @OneToOne(mappedBy = "company")
-		private Director director;
->>>>>>> 2bab7318d52299c06ca93ea5080e89e923054a3d
+    @NotNull
+    private Long phoneNo;
 
-	public Company(Long companyid, @NotNull String organizationCode, @NotNull String companyname,
-			@NotNull String inceptionDate, @NotNull String registerNo, @NotNull Long phoneNo, @NotNull String email,
-			@NotNull String flatNo, @NotNull String website, @NotNull String city, @NotNull String state,
-			@NotNull Long pincode, GST gst, Bank bank, IncomeTax incomeTax, EPF epf, Director director) {
-		super();
-		this.companyid = companyid;
-		this.organizationCode = organizationCode;
-		this.companyname = companyname;
-		this.inceptionDate = inceptionDate;
-		this.registerNo = registerNo;
-		this.phoneNo = phoneNo;
-		this.email = email;
-		this.flatNo = flatNo;
-		this.website = website;
-		this.city = city;
-		this.state = state;
-		this.pincode = pincode;
-		this.gst = gst;
-		this.bank = bank;
-		this.incomeTax = incomeTax;
-		this.epf = epf;
-		this.director = director;
-	}
+    @NotNull
+    private String email;
 
-	public Company() {
-		super();
-	}
+    @NotNull
+    private String flatNo;
 
-	public Long getCompanyid() {
-		return companyid;
-	}
+    @NotNull
+    private String website;
 
-	public void setCompanyid(Long companyid) {
-		this.companyid = companyid;
-	}
+    @NotBlank
+    private String registerNumber;
 
-	public String getCompanyname() {
-		return companyname;
-	}
-	public String getCompanycode() {
-		return companycode;
-	}
+    @NotBlank
+    private String pincode;
 
-<<<<<<< HEAD
-	public void setCompanycode(String companycode) {
-		this.companycode = companycode;
-=======
-	public String getInceptionDate() {
-		return inceptionDate;
->>>>>>> 2bab7318d52299c06ca93ea5080e89e923054a3d
-	}
+    @NotBlank
+    private String doorNo;
 
-	public String getAddress() {
-		return address;
-	}
+    @NotBlank
+    private String city;
 
-	public void setAddress(String address) {
-		this.address = address;
-	}
+    @NotNull
+    private String state;
 
-	public String getPhoneNumber() {
-		return phoneNumber;
-	}
+    @NotBlank
+    private String owner;
 
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
-	}
+    // One-to-one mapping with GST entity class
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "gst_id", referencedColumnName = "id")
+    private GST gst;
 
-	public String getEmail() {
-		return email;
-	}
+    // One-to-one mapping with Bank entity class
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "bank_id", referencedColumnName = "id")
+    private Bank bank;
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    // One-to-one mapping with IncomeTax entity class
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "incomeTax_id", referencedColumnName = "id")
+    private IncomeTax incomeTax;
 
-	public String getFlatNo() {
-		return flatNo;
-	}
+    // One-to-one mapping with EPF entity class
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "epf_id", referencedColumnName = "id")
+    private EPF epf;
 
-	public void setFlatNo(String flatNo) {
-		this.flatNo = flatNo;
-	}
+    // One-to-one mapping with Director entity class
+    @OneToOne(mappedBy = "company")
+    private Director director;
 
-	public String getWebsite() {
-		return website;
-	}
+    public Company() {
+        // Default constructor
+    }
 
-	public void setWebsite(String website) {
-		this.website = website;
-	}
+    public Company(Long companyid, @NotNull String organizationCode, @NotNull String companyname,
+                   @NotNull String inceptionDate, @NotNull String registerNo, @NotNull Long phoneNo,
+                   @NotNull String email, @NotNull String flatNo, @NotNull String website,
+                   @NotNull String city, @NotNull String state, @NotNull String pincode, GST gst,
+                   Bank bank, IncomeTax incomeTax, EPF epf, Director director) {
+        this.companyid = companyid;
+        this.organizationCode = organizationCode;
+        this.companyname = companyname;
+        this.inceptionDate = inceptionDate;
+        this.registerNo = registerNo;
+        this.phoneNo = phoneNo;
+        this.email = email;
+        this.flatNo = flatNo;
+        this.website = website;
+        this.city = city;
+        this.state = state;
+        this.pincode = pincode;
+        this.gst = gst;
+        this.bank = bank;
+        this.incomeTax = incomeTax;
+        this.epf = epf;
+        this.director = director;
+    }
 
-<<<<<<< HEAD
-	public String getRegisterNumber() {
-		return registerNumber;
-	}
+    // Getters and Setters
 
-	public void setRegisterNumber(String registerNumber) {
-		this.registerNumber = registerNumber;
-	}
+    public Long getCompanyid() {
+        return companyid;
+    }
 
-	public String getInceptionDate() {
-		return inceptionDate;
-	}
+    public void setCompanyid(Long companyid) {
+        this.companyid = companyid;
+    }
 
-	public void setInceptionDate(String inceptionDate) {
-		this.inceptionDate = inceptionDate;
-	}
+    public String getCompanyname() {
+        return companyname;
+    }
 
-	public String getOwner() {
-		return owner;
-	}
+    public void setCompanyname(String companyname) {
+        this.companyname = companyname;
+    }
 
-	public void setOwner(String owner) {
-		this.owner = owner;
-	}
+    public String getCompanycode() {
+        return companycode;
+    }
 
-	public void setCompanyname(String companyname) {
-		this.companyname = companyname;
-	}
-	public String getPincode() {
-		return pincode;
-	}
+    public void setCompanycode(String companycode) {
+        this.companycode = companycode;
+    }
 
-	public void setPincode(String pincode) {
-		this.pincode = pincode;
-	}
+    public String getAddress() {
+        return address;
+    }
 
-	public String getDoorNo() {
-		return doorNo;
-	}
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
-	public void setDoorNo(String doorNo) {
-		this.doorNo = doorNo;
-	}
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
 
-=======
->>>>>>> 2bab7318d52299c06ca93ea5080e89e923054a3d
-	public String getCity() {
-		return city;
-	}
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
 
-	public void setCity(String city) {
-		this.city = city;
-	}
-	public String getDirector() {
-		return director;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public void setDirector(String director) {
-		this.director = director;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public String getState() {
-		return state;
-	}
+    public String getFlatNo() {
+        return flatNo;
+    }
 
-	public void setState(String state) {
-		this.state = state;
-	}
+    public void setFlatNo(String flatNo) {
+        this.flatNo = flatNo;
+    }
 
-	public GST getGst() {
-		return gst;
-	}
+    public String getWebsite() {
+        return website;
+    }
 
-	public void setGst(GST gst) {
-		this.gst = gst;
-	}
+    public void setWebsite(String website) {
+        this.website = website;
+    }
 
-	public Bank getBank() {
-		return bank;
-	}
+    public String getRegisterNumber() {
+        return registerNumber;
+    }
 
-	public void setBank(Bank bank) {
-		this.bank = bank;
-	}
+    public void setRegisterNumber(String registerNumber) {
+        this.registerNumber = registerNumber;
+    }
 
-	public IncomeTax getIncomeTax() {
-		return incomeTax;
-	}
+    public String getInceptionDate() {
+        return inceptionDate;
+    }
 
-	public void setIncomeTax(IncomeTax incomeTax) {
-		this.incomeTax = incomeTax;
-	}
+    public void setInceptionDate(String inceptionDate) {
+        this.inceptionDate = inceptionDate;
+    }
 
-	public EPF getEpf() {
-		return epf;
-	}
+    public String getOwner() {
+        return owner;
+    }
 
-	public void setEpf(EPF epf) {
-		this.epf = epf;
-	}
+    public void setOwner(String owner) {
+        this.owner = owner;
+    }
 
-<<<<<<< HEAD
-=======
-	public Director getDirector() {
-		return director;
-	}
+    public String getPincode() {
+        return pincode;
+    }
 
-	public void setDirector(Director director) {
-		this.director = director;
-	}
->>>>>>> 2bab7318d52299c06ca93ea5080e89e923054a3d
+    public void setPincode(String pincode) {
+        this.pincode = pincode;
+    }
+
+    public String getDoorNo() {
+        return doorNo;
+    }
+
+    public void setDoorNo(String doorNo) {
+        this.doorNo = doorNo;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public GST getGst() {
+        return gst;
+    }
+
+    public void setGst(GST gst) {
+        this.gst = gst;
+    }
+
+    public Bank getBank() {
+        return bank;
+    }
+
+    public void setBank(Bank bank) {
+        this.bank = bank;
+    }
+
+    public IncomeTax getIncomeTax() {
+        return incomeTax;
+    }
+
+    public void setIncomeTax(IncomeTax incomeTax) {
+        this.incomeTax = incomeTax;
+    }
+
+    public EPF getEpf() {
+        return epf;
+    }
+
+    public void setEpf(EPF epf) {
+        this.epf = epf;
+    }
+
+    public Director getDirector() {
+        return director;
+    }
+
+    public void setDirector(Director director) {
+        this.director = director;
+    }
 
 	
 }

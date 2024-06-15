@@ -5,45 +5,17 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-<<<<<<< HEAD
-import jakarta.persistence.ManyToOne;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
-=======
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
->>>>>>> 2bab7318d52299c06ca93ea5080e89e923054a3d
+
 
 @Entity
 public class Bank {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-<<<<<<< Updated upstream
-	private String accountHolderName;
-	private String bankAccountNumber;
-	private String ifccode;
-	private String bankName;
-	private String branch;
-	private long irccode;
-	private long mrccode;
-	private long rbicode;
-	private long transactionCode;
-	private String accountType;
-	private String password;
+	private Long id; 
 	
-<<<<<<< HEAD
-	@ManyToOne
-	private Company company;
-
-	public Company getCompany() {
-		return company;
-	}
-
-	public void setCompany(Company company) {
-		this.company = company;
-	}
-=======
 	 @OneToOne
 	    @JoinColumn(name="company_id")
 	    private Company company;
@@ -55,12 +27,12 @@ public class Bank {
 		this.id = id;
 		this.accountHolderName = accountHolderName;
 		this.bankAccountNumber = bankAccountNumber;
-		this.ifccode = ifccode;
+		this.IFCcode = ifccode;
 		this.bankName = bankName;
 		this.branch = branch;
-		this.irccode = irccode;
-		this.mrccode = mrccode;
-		this.rbicode = rbicode;
+		this.IRCcode = irccode;
+		this.MRCcode = mrccode;
+		this.IRCcode = rbicode;
 		this.transactionCode = transactionCode;
 		this.accountType = accountType;
 		this.password = password;
@@ -70,8 +42,7 @@ public class Bank {
 	public Bank() {
 		super();
 	}
->>>>>>> 2bab7318d52299c06ca93ea5080e89e923054a3d
-=======
+
 	@Size(max=50)
     @Column(length = 50)
 	private String accountHolderName;
@@ -103,7 +74,7 @@ public class Bank {
 
     @Column(length = 255)
     private String password;
->>>>>>> Stashed changes
+
 
 	public Long getId() {
 		return id;
@@ -130,11 +101,11 @@ public class Bank {
 	}
 
 	public String getIfccode() {
-		return ifccode;
+		return IFCcode;
 	}
 
 	public void setIfccode(String ifccode) {
-		this.ifccode = ifccode;
+		this.IFCcode = ifccode;
 	}
 
 	public String getBankName() {
@@ -154,27 +125,27 @@ public class Bank {
 	}
 
 	public long getIrccode() {
-		return irccode;
+		return IRCcode;
 	}
 
 	public void setIrccode(long irccode) {
-		this.irccode = irccode;
+		this.IRCcode = irccode;
 	}
 
 	public long getMrccode() {
-		return mrccode;
+		return MRCcode;
 	}
 
 	public void setMrccode(long mrccode) {
-		this.mrccode = mrccode;
+		this.MRCcode = mrccode;
 	}
 
 	public long getRbicode() {
-		return rbicode;
+		return getRbicode();
 	}
 
 	public void setRbicode(long rbicode) {
-		this.rbicode = rbicode;
+		this.IRCcode = rbicode;
 	}
 
 	public long getTransactionCode() {
@@ -208,7 +179,4 @@ public class Bank {
 	public void setCompany(Company company) {
 		this.company = company;
 	}
-	 
-	
-
 }

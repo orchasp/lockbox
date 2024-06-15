@@ -1,43 +1,31 @@
 package com.orchasp.app.induslockbox.entity;
 
 import jakarta.persistence.Column;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-<<<<<<< HEAD
+
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
-=======
+
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
->>>>>>> 2bab7318d52299c06ca93ea5080e89e923054a3d
+
 
 @Entity
 public class IncomeTax {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-<<<<<<< Updated upstream
+
 	private String panNumber;
 	private String name;
 	private String issuedDate;
 	private String dateOfBirth;
-=======
 
-	  @Column(length = 10)
-	    private String panNumber;
-
-	    @Column(length = 50)
-	    private String name;
-
-	 @Column(length = 10)
-	    private String issuedDate;
-
-	    @Column(length = 10)
-	    private String dateOfBirth;
->>>>>>> Stashed changes
 
 	@OneToOne
 	@JoinColumn(name = "company_id")
@@ -53,25 +41,12 @@ public class IncomeTax {
 		this.company = company;
 	}
 
-<<<<<<< HEAD
-	  @NotBlank
-	    @Column(length = 10)
-    private String dateOfBirth;
-	  @ManyToOne
-		private Company company;
 
-		public Company getCompany() {
-			return company;
-		}
-
-		public void setCompany(Company company) {
-			this.company = company;
-		}
-=======
+		
 	public IncomeTax() {
 		super();
 	}
->>>>>>> 2bab7318d52299c06ca93ea5080e89e923054a3d
+
 
 	public Long getId() {
 		return id;
@@ -81,13 +56,7 @@ public class IncomeTax {
 		this.id = id;
 	}
 	
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
+	
 
 	public String getPanNumber() {
 		return panNumber;
@@ -120,8 +89,7 @@ public class IncomeTax {
 	public void setDateOfBirth(String dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
-<<<<<<< HEAD
-=======
+
 
 	public Company getCompany() {
 		return company;
@@ -131,6 +99,5 @@ public class IncomeTax {
 		this.company = company;
 	}
 
-	
->>>>>>> 2bab7318d52299c06ca93ea5080e89e923054a3d
+
 }
