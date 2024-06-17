@@ -76,6 +76,38 @@ public class UserDetailsImp implements UserDetails,UserDetailsService{
 	    return new UserDetailsImp(admin);
 	}
 
+	public AdminRepository getRepository() {
+		return repository;
+	}
+
+	public void setRepository(AdminRepository repository) {
+		this.repository = repository;
+	}
+
+	public Admin getAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(Admin admin) {
+		this.admin = admin;
+	}
+
+	public void setAuthorities(Collection<? extends GrantedAuthority> authorities) {
+		this.authorities = authorities;
+	}
+
+	public UserDetailsImp() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public UserDetailsImp(AdminRepository repository, Admin admin, Collection<? extends GrantedAuthority> authorities) {
+		super();
+		this.repository = repository;
+		this.admin = admin;
+		this.authorities = authorities;
+	}
+
 	
 
 }

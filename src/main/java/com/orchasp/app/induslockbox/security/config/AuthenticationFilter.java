@@ -24,10 +24,10 @@ import lombok.RequiredArgsConstructor;
 public class AuthenticationFilter extends OncePerRequestFilter {
 
     @Autowired
-    private final JwtServiceImpl jwtService;
+    private JwtServiceImpl jwtService;
 
     @Autowired
-    private final UserDetailsImp userService;
+    private UserDetailsImp userService;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)

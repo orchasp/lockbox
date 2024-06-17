@@ -16,7 +16,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import com.orchasp.app.induslockbox.entity.Role;
 import com.orchasp.app.induslockbox.service.UserDetailsImp;
 
 import lombok.RequiredArgsConstructor;
