@@ -7,7 +7,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
@@ -31,7 +31,7 @@ public class ESI {
 	private LocalDateTime updatedDate;
 	private boolean active = true;
 	
-	 @OneToOne
+	@ManyToOne
 	    @JoinColumn(name="company_id")
 	    private Company company;
 
