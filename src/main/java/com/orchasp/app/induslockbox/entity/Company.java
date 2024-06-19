@@ -46,25 +46,7 @@ public class Company {
 	private LocalDateTime updatedDate;
 	private boolean active = true;
 
-//	// @OneToOne mapping with GST entity class
-	@OneToOne(mappedBy = "company")
-	private GST gst;
-//
-//	// @OneToOne mapping with Bank entity class
-	@OneToOne(mappedBy = "company")
-	private Bank bank;
-//
-//	//@OneToOne mapping with IncomeTax entity class
-	@OneToOne(mappedBy = "company")
-	private IncomeTax incomeTax;
-//
-//	// @OneToOne mapping with EPF entity class
-	@OneToOne(mappedBy = "company")
-	private EPF epf;
-//	
-//	// @OneToOne mapping with Director entity class
-	@OneToOne(mappedBy = "company")
-	private Director director;
+
 
 	public Company() {
 		super();
@@ -94,11 +76,6 @@ public class Company {
 		this.createdDate = createdDate;
 		this.updatedDate = updatedDate;
 		this.active = active;
-		this.gst = gst;
-		this.bank = bank;
-		this.incomeTax = incomeTax;
-		this.epf = epf;
-		this.director = director;
 	}
 
 	public Long getCompanyid() {
